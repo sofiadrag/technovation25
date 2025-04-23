@@ -35,7 +35,7 @@ const MainNavigator = () => (
                 headerShown: false,
                 tabBarLabel: 'Feed',
                 tabBarIcon: ({ color }) => (
-                    <MaterialIcons name="account-circle" size={24} color="grey" />
+                    <MaterialIcons name="auto-awesome-mosaic" size={24} color="grey" />
                 ),
             }}
         />     
