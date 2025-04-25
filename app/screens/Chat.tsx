@@ -1,19 +1,95 @@
 import React, { useState } from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import MainLayout from "./Layout";
+import { View, TextInput, Button, ScrollView, StyleSheet, ActivityIndicator, Text } from "react-native";
 import { Paragraph } from "react-native-paper";
+import MainLayout from "./Layout";
+import { fetchOpenAIResponse } from "../utils/openaiApi"; // Asigură-te că ai acest fișier creat
+import HomeScreen from "../../react-native-firebase-seed/app/screens/Home";
 
-const Stack = createNativeStackNavigator();
+const ChatScreen = () => {
+  const [messages, setMessages] = useState<{ sender: string; text: string }[]>([]);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
 
-const HomeScreen = ({ navigation }: any) => {
+  const sendMessage = async () => {
+    if (!input.trim()) return;
 
-    const [data, setData] = useState<{ label: string, quantity: number }[]>();
+    const userMessage = { sender: "user", text: input };
+    setMessages((prev) => [...prev, userMessage]);
+    setInput("");
+    setLoading(true);
 
-    return (
-        <MainLayout>
-            <Paragraph>!</Paragraph>
-       </MainLayout>
-    );
-}
+    const aiText = await fetchOpenAIResponse(input);
+    const aiMessage = { sender: "ai", text: aiText };
+
+    setMessages((prev) => [...prev, aiMessage]);
+    setLoading(false);
+  };
+
+  return (
+    <MainLayout>
+      <ScrollView style={styles.chatContainer}>
+        {messages.map((msg, index) => (
+          <View
+            key={index}
+            style={[
+              styles.message,
+              msg.sender === "user" ? styles.userMessage : styles.aiMessage,
+            ]}
+          >
+            <Text style={styles.messageText}>{msg.text}</Text>
+          </View>
+        ))}
+        {loading && <ActivityIndicator size="small" color="#0000ff" />}
+      </ScrollView>
+
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          value={input}
+          onChangeText={setInput}
+          placeholder="Scrie o întrebare despre carieră..."
+        />
+        <Button title="Trimite" onPress={sendMessage} />
+      </View>
+    </MainLayout>
+  );
+};
 
 export default HomeScreen;
+
+const styles = StyleSheet.create({
+  chatContainer: {
+    flex: 1,
+    marginBottom: 10,
+  },
+  message: {
+    padding: 10,
+    borderRadius: 8,
+    marginVertical: 4,
+    maxWidth: "80%",
+  },
+  userMessage: {
+    alignSelf: "flex-end",
+    backgroundColor: "#d1e7dd",
+  },
+  aiMessage: {
+    alignSelf: "flex-start",
+    backgroundColor: "#f8d7da",
+  },
+  messageText: {
+    fontSize: 16,
+  },
+  inputContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  input: {
+    flex: 1,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    borderRadius: 8,
+    padding: 10,
+    marginRight: 8,
+  },
+});
