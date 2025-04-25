@@ -5,7 +5,7 @@ export async function fetchGeminiResponse(prompt: any) {
     contents: [
       {
         parts: [
-          { text: prompt } // Prompt-ul trimis la Gemini
+          { text: prompt } 
         ]
       }
     ]
