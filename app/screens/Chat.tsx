@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { View, TextInput, Button, ScrollView, StyleSheet, ActivityIndicator, Text } from "react-native";
 import { Paragraph } from "react-native-paper";
 import MainLayout from "./Layout";
-import { fetchOpenAIResponse } from "../utils/openaiApi"; 
-import HomeScreen from "../../react-native-firebase-seed/app/screens/Home";
+import { fetchOpenAIResponse } from "utils\openaiApi.ts"; 
+import HomeScreen from "react-native-firebase-seed";
 
-const ChatScreen = () => {
+
+const HomeScreen = () => {
   const [messages, setMessages] = useState<{ sender: string; text: string }[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
