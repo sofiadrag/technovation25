@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, TextInput, Button, ScrollView, StyleSheet, ActivityIndicator, Text } from "react-native";
 import { Paragraph } from "react-native-paper";
 import MainLayout from "./Layout";
-import { fetchOpenAIResponse } from "../utils/openaiApi"; // Asigură-te că ai acest fișier creat
+import { fetchOpenAIResponse } from "../utils/openaiApi"; 
 import HomeScreen from "../../react-native-firebase-seed/app/screens/Home";
 
 const ChatScreen = () => {
