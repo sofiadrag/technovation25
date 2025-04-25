@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import { View, TextInput, Button, ScrollView, StyleSheet, ActivityIndicator, Text } from "react-native";
 import { Paragraph } from "react-native-paper";
 import MainLayout from "./Layout";
-import { fetchOpenAIResponse } from "utils\openaiApi.ts"; 
-import HomeScreen from "react-native-firebase-seed";
-
+import { fetchGeminiResponse } from "utils/geminiApi"; 
 
 const HomeScreen = () => {
-  const [messages, setMessages] = useState<{ sender: string; text: string }[]>([]);
+  const [messages, setMessages] = useState([{ sender: "user", text: "" }]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -19,7 +17,7 @@ const HomeScreen = () => {
     setInput("");
     setLoading(true);
 
-    const aiText = await fetchOpenAIResponse(input);
+    const aiText = await fetchGeminiResponse(input); 
     const aiMessage = { sender: "ai", text: aiText };
 
     setMessages((prev) => [...prev, aiMessage]);
@@ -91,6 +89,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     padding: 10,
-    marginRight: 8,
-  },
+    marginRight: 8,
+  },
 });
