@@ -10,7 +10,7 @@ import {
 import { Avatar, Button } from "react-native-paper";
 import data from "../data/mock_api.json";
 
-export default function App() {
+export default function SearchScreen({ navigation }) {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredData, setFilteredData] = useState<any[]>(data);
   const [selectedOpportunity, setSelectedOpportunity] = useState<any | null>(
@@ -36,6 +36,11 @@ export default function App() {
 
   const handleBack = () => {
     setSelectedOpportunity(null);
+  };
+
+  const navigateToChat = (user) => {
+    const userName = `${user.contact.firstName} ${user.contact.lastName}`;
+    navigation.navigate("Home", { userName });
   };
 
   if (selectedOpportunity) {
@@ -70,10 +75,10 @@ export default function App() {
             {selectedOpportunity.location.country}
           </Text>
           {selectedOpportunity.description && (
-            <Text style={styles.Description}>
-              <Text style={styles.Bold}>Description:</Text>{" "}
-              {selectedOpportunity.description}
-            </Text>
+            <View style={styles.DescriptionContainer}>
+              <Text style={styles.Bold}>Description:</Text>
+              <Text style={styles.Description}>{selectedOpportunity.description}</Text>
+            </View>
           )}
           <Button mode="contained" onPress={handleBack} style={styles.BackButton}>
             Back
@@ -127,6 +132,15 @@ export default function App() {
             >
               View Details
             </Button>
+            <Button
+              mode="text"
+              onPress={() => navigateToChat(item)}
+              style={styles.ChatButton}
+              labelStyle={{ color: "#FFFFFF" }}
+              theme={{ colors: { primary: "#FFFFFF" } }}
+            >
+              Chat
+            </Button>
           </View>
         ))}
       </ScrollView>
@@ -147,7 +161,7 @@ const styles = StyleSheet.create({
   },
   Rectangle: {
     borderWidth: 1,
-    borderColor: "#403F41",
+    borderColor: "white",
     borderRadius: 10,
     padding: 15,
     marginBottom: 15,
@@ -177,10 +191,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginBottom: 5,
     flexWrap: "wrap",
+    marginTop: 5,
   },
   Location: {
     fontSize: 14,
     flexWrap: "wrap",
+    marginTop: 5,
   },
   Description: {
     fontSize: 14,
@@ -193,11 +209,18 @@ const styles = StyleSheet.create({
   DetailsButton: {
     marginTop: 10,
     backgroundColor: "#825C96",
+    borderColor: "white",
+    borderWidth: 0.5,
+  },
+  ChatButton: {
+    marginTop: 10,
+    backgroundColor: "#825C96",
+    height: 40,
+    borderColor: "white",
+    borderWidth: 0.5,
   },
   DetailsContainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     padding: 20,
   },
   DetailsLabel: {
@@ -207,8 +230,18 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   BackButton: {
-    marginTop: 20,
+    marginTop: 40,
     backgroundColor: "#825C96",
     padding: 10,
+    borderColor: "white",
+    borderWidth: 0.5,
+  },
+  DescriptionContainer: {
+    marginTop: 25,
+    padding: 10,
+    backgroundColor: "#F5F5F5",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#DDD",
   },
 });

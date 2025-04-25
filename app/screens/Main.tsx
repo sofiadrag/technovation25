@@ -1,21 +1,27 @@
 import React from "react";
-import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ChatScreen from "./Chat";
+import { createStackNavigator } from '@react-navigation/stack'; // Import Stack Navigator
+import { NavigationContainer } from "@react-navigation/native";
+import ChatAIScreen from "./ChatAI";
 import SearchScreen from "./Search";
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import FeedScreen from "./Feed";
+import HomeScreen from "./Home";
+import AccountScreen from "./Account";
+import ChatScreen from "./Chat";
 import Entypo from '@expo/vector-icons/Entypo';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import AccountScreen from "./Account";
-import FeedScreen from "./Feed";
-import HomeScreen from "./Home"
-import Entypo1 from '@expo/vector-icons/Entypo';
-//https://reactnavigation.org/docs/tab-based-navigation
-const Tab = createBottomTabNavigator();
 
+const Tab = createBottomTabNavigator({
+    screens: {
+        Home: HomeScreen,
+        Feed: FeedScreen,
+        ChatAI: ChatAIScreen,
+        Search: SearchScreen,
+        Account: AccountScreen, 
+    }
+});
 const MainNavigator = () => (
-
     <Tab.Navigator>
         <Tab.Screen
             name="Home"
@@ -27,7 +33,7 @@ const MainNavigator = () => (
                     <Entypo name="home" size={24} color="grey" />
                 ),
             }}
-        />     
+        />
         <Tab.Screen
             name="Feed"
             component={FeedScreen}
@@ -38,10 +44,10 @@ const MainNavigator = () => (
                     <MaterialIcons name="account-circle" size={24} color="grey" />
                 ),
             }}
-        />     
+        />
         <Tab.Screen
-            name="Chat"
-            component={ChatScreen}
+            name="ChatAI"
+            component={ChatAIScreen}
             options={{
                 headerShown: false,
                 tabBarLabel: 'Chat',
@@ -60,7 +66,7 @@ const MainNavigator = () => (
                     <FontAwesome name="search" size={24} color="grey" />
                 ),
             }}
-        />   
+        />
         <Tab.Screen
             name="Account"
             component={AccountScreen}
@@ -71,8 +77,22 @@ const MainNavigator = () => (
                     <MaterialIcons name="account-circle" size={24} color="grey" />
                 ),
             }}
-        />         
+        />
+        <Tab.Screen
+            name="Chat"
+            component={ChatScreen}
+            options={{
+                headerShown: false,
+                tabBarLabel: 'Chat',
+                tabBarIcon: ({ color }) => (
+                    <MaterialIcons name="chat" size={24} color="grey" />
+                ),
+            }}
+        />
     </Tab.Navigator>
 );
+
+
+
 
 export default MainNavigator;

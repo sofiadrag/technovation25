@@ -13,10 +13,11 @@ const MainLayout = ({ children }: any) => {
 
     return (
         user ? <SafeAreaView>
-            <Appbar.Header>
-                <Appbar.Action icon="logout" onPress={async () => { navigation.navigate('Login') }} />
-            </Appbar.Header>
-            <View style={{ alignSelf: 'stretch', backgroundColor: 'F5F938', height: '80%', display: 'flex', flexDirection: 'column' }}>{children}</View>
+            {/* <Appbar.Header> */}
+                {/* <Appbar.Action icon="logout" onPress={async () => { navigation.navigate('Login') }} /> */}
+                {/*<Appbar.Content title="Home" /> {/* Added title to Appbar */}
+            {/* </Appbar.Header> */}
+            <View style={{ alignSelf: 'stretch', backgroundColor: 'F5F9C8', height: '80%', display: 'flex', flexDirection: 'column' }}>{children}</View>
 
         </SafeAreaView> :
             <ActivityIndicator />
