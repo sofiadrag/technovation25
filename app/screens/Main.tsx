@@ -72,6 +72,7 @@ const MainNavigator = () => (
                 ),
             }}
         />         
+        
     </Tab.Navigator>
 );
 

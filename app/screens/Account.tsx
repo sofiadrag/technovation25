@@ -1,6 +1,7 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { View, Text, StyleSheet, Image, Button } from 'react-native';
+import { View, Text, StyleSheet, Image,  } from 'react-native';
+import {  Button  } from 'react-native-paper';
 import ItemEditScreen from "./ItemEdit";
 import ItemListScreen from "./ItemList";
 import MainLayout from "./Layout";
@@ -21,8 +22,15 @@ const AccountScreen = () => {
       <Text style={styles.email}>john.doe@example.com</Text>
       <Text style={styles.cv}>C.V.</Text>
       <Text style={styles.cv}>Experience:</Text>
-      <Button title="Edit Profile" onPress={() => alert('Edit Profile')} />
-       </View>
+      <Button
+           mode="contained"
+           buttonColor="#B191E3"
+           onPress={() => alert('Edit Profile')}
+          >
+           Edit Profile
+      </Button>
+    
+      </View>
     );
 }
 
@@ -34,7 +42,7 @@ const styles = StyleSheet.create({
       paddingLeft: 10,
       paddingRight:10,
       alignItems: 'center',
-      backgroundColor: '#fff',
+      backgroundColor: '#F5F9C8',
       
     },
     title: {
