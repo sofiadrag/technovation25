@@ -4,7 +4,7 @@ import { Paragraph } from "react-native-paper";
 import MainLayout from "./Layout";
 import { fetchGeminiResponse } from "utils\geminiApi.ts"; 
 
-const ChatScreen = () => {
+const ChatAIScreen = () => {
   const [messages, setMessages] = useState([{ sender: "user", text: "" }]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -54,7 +54,7 @@ const ChatScreen = () => {
   );
 };
 
-export default ChatScreen;
+export default ChatAIScreen;
 
 const styles = StyleSheet.create({
   chatContainer: {
