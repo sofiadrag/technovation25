@@ -1,31 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView, StyleSheet, Text, View, FlatList } from "react-native";
 import { Button, Avatar } from "react-native-paper";
+import Data from "../data/mock_api.json"; // Import user data from mock_api.json
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function HomeScreen({ navigation, route }) {
-    const [activeChats, setActiveChats] = useState<{ userName: string; avatar?: string }[]>([]);
+    const [activeChats, setActiveChats] = useState<{ userName: string; avatar?: string, id: string }[]>([]);
 
-    // Check if a new chat user is passed from the SearchScreen
-    if (route.params?.userName) {
-        const userName = route.params.userName;
-        const avatar = route.params.avatar; // Include avatar if provided
-        const chatExists = activeChats.some((chat) => chat.userName === userName);
-
-        if (!chatExists) {
-            setActiveChats((prevChats) => [...prevChats, { userName, avatar }]);
+    useEffect(() => {
+        AsyncStorage.getItem("chatUsers").then((chatUsers) => {
+            const parsedChatUsers = JSON.parse(chatUsers || "[]") || [];
+            setActiveChats(Data
+                .filter((user) => parsedChatUsers.some((chatUser) => chatUser === user.id))
+                .map(user => ({ id: user.id, userName: user.contact.firstName + ' ' + user.contact.lastName, avatar: user.photo })) // Map the filtered users to the desired format
+            ); 
         }
-    }
+        )
+    }, [route.params?.id]); // Update the active chats when the component mounts or when the user ID changes
 
-    const navigateToChat = (userName: string) => {
-        navigation.navigate("Chat", { userName });
+    const navigateToChat = (user) => {
+        navigation.navigate("Chat", { id: user.id }); // Navigate to the Chat screen with the user's ID
     };
-
+    const wipeAllUsers = async () => {
+        await AsyncStorage.removeItem("chatUsers"); // Clear all chat users from AsyncStorage
+        setActiveChats([]);
+    };
     return (
         <SafeAreaView style={styles.container}>
             {/* Header */}
             <View style={styles.header}>
                 <Text style={styles.headerGreeting}>Hello</Text>
                 <Text style={styles.headerName}>Delia</Text>
+                {/* Wipe All Users Button */}
+                <Button mode="text" onPress={wipeAllUsers} style={styles.wipeButton}>
+                    Wipe All Users
+                </Button>
             </View>
             <FlatList
                 data={activeChats}
@@ -40,7 +49,7 @@ export default function HomeScreen({ navigation, route }) {
                         <Text style={styles.chatName}>{item.userName}</Text>
                         <Button
                             mode="text"
-                            onPress={() => navigateToChat(item.userName)}
+                            onPress={() => navigateToChat(item)}
                             style={styles.chatButton}
                             labelStyle={styles.chatButtonText}
                         >

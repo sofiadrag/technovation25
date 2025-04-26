@@ -1,5 +1,6 @@
 [
   {
+    "id": "1a2b3c4d",
     "label": "Software Engineer Internship",
     "contact": {
       "firstName": "John",
@@ -12,10 +13,11 @@
       "city": "San Francisco",
       "country": "USA"
     },
-    "photo": "",
-    "description": "The Software Engineer Internship offers hands-on experience for students interested in coding, debugging, and collaborating on real-world app development projects alongside professional engineers."
+    "photo": "https://randomuser.me/api/portraits/men/1.jpg",
+    "description": "Gain hands-on experience in coding and app development."
   },
   {
+    "id": "2e3f4g5h",
     "label": "AI Research Contest",
     "contact": {
       "firstName": "Alice",
@@ -28,10 +30,11 @@
       "city": "Palo Alto",
       "country": "USA"
     },
-    "photo": "",
-    "description": "The AI Research Contest challenges participants to design and test AI models, present findings, and compete with peers while exploring innovative solutions to real-world problems."
+    "photo": "https://randomuser.me/api/portraits/women/2.jpg",
+    "description": "Design and test AI models to solve real-world problems."
   },
   {
+    "id": "3i4j5k6l",
     "label": "Graphic Design Workshop",
     "contact": {
       "firstName": "Emma",
@@ -44,10 +47,11 @@
       "city": "Los Angeles",
       "country": "USA"
     },
-    "photo": "",
-    "description": "The Graphic Design Workshop is a guided learning session where students will use tools like Adobe Photoshop and Illustrator to create digital posters, branding materials, and design portfolios."
+    "photo": "https://randomuser.me/api/portraits/women/3.jpg",
+    "description": "Learn to create digital posters and branding materials."
   },
   {
+    "id": "4m5n6o7p",
     "label": "Marketing Internship",
     "contact": {
       "firstName": "Michael",
@@ -60,10 +64,11 @@
       "city": "New York",
       "country": "USA"
     },
-    "photo": "",
-    "description": "The Marketing Internship gives teens the chance to assist in campaign planning, social media management, and market analysis while working with professional marketers."
+    "photo": "https://randomuser.me/api/portraits/men/4.jpg",
+    "description": "Assist in campaign planning and social media management."
   },
   {
+    "id": "5q6r7s8t",
     "label": "Medical Volunteering Program",
     "contact": {
       "firstName": "Sophia",
@@ -76,10 +81,11 @@
       "city": "Chicago",
       "country": "USA"
     },
-    "photo": "",
-    "description": "The Medical Volunteering Program involves assisting with patient care, organizing health awareness activities, and supporting hospital staff in non-clinical tasks to understand the healthcare environment."
+    "photo": "https://randomuser.me/api/portraits/women/5.jpg",
+    "description": "Support hospital staff and organize health awareness activities."
   },
   {
+    "id": "6u7v8w9x",
     "label": "Data Science Bootcamp",
     "contact": {
       "firstName": "James",
@@ -92,10 +98,11 @@
       "city": "Austin",
       "country": "USA"
     },
-    "photo": "",
-    "description": "The Data Science Bootcamp is an intensive program where teens will learn to clean datasets, build visualizations, and create simple predictive models using Python or Excel."
+    "photo": "https://randomuser.me/api/portraits/men/6.jpg",
+    "description": "Learn to clean datasets and build predictive models."
   },
   {
+    "id": "7y8z9a0b",
     "label": "Art Exhibition Volunteering",
     "contact": {
       "firstName": "Olivia",
@@ -108,10 +115,11 @@
       "city": "Portland",
       "country": "USA"
     },
-    "photo": "",
-    "description": "As part of Art Exhibition Volunteering, students will help curate artworks, set up displays, assist guests, and learn about event coordination in the art world."
+    "photo": "https://randomuser.me/api/portraits/women/7.jpg",
+    "description": "Help curate artworks and assist guests at exhibitions."
   },
   {
+    "id": "8c9d0e1f",
     "label": "Business Strategy Contest",
     "contact": {
       "firstName": "William",
@@ -124,120 +132,7 @@
       "city": "Boston",
       "country": "USA"
     },
-    "photo": "",
-    "description": "In the Business Strategy Contest, students will form teams to solve case studies, pitch ideas, and create mock business plans judged by industry professionals."
-  },
-  {
-    "label": "Nursing Internship",
-    "contact": {
-      "firstName": "Isabella",
-      "lastName": "Thomas",
-      "email": "isabella.thomas@nursingcare.com",
-      "phone": "555-901-2345"
-    },
-    "location": {
-      "address": "789 Caregiver Lane",
-      "city": "Seattle",
-      "country": "USA"
-    },
-    "photo": "",
-    "description": "The Nursing Internship allows teens to shadow nurses, learn basic patient care techniques, and support administrative work in clinical settings, gaining insight into medical careers."
-  },
-  {
-    "label": "Automotive Technician Training",
-    "contact": {
-      "firstName": "Ethan",
-      "lastName": "Harris",
-      "email": "ethan.harris@autotech.com",
-      "phone": "555-012-3456"
-    },
-    "location": {
-      "address": "321 Mechanic Road",
-      "city": "Detroit",
-      "country": "USA"
-    },
-    "photo": "",
-    "description": "This training prepares teens for technical trades by teaching them how to inspect, maintain, and repair vehicle systems under the guidance of certified technicians."
-  },
-  {
-    "label": "STEM College Fair",
-    "contact": {
-      "firstName": "Mia",
-      "lastName": "Clark",
-      "email": "mia.clark@stemfair.com",
-      "phone": "555-123-4568"
-    },
-    "location": {
-      "address": "123 Science Blvd",
-      "city": "San Diego",
-      "country": "USA"
-    },
-    "photo": "https://example.com/photos/stem_college_fair.jpg",
-    "description": "The STEM College Fair connects teens with university representatives, hands-on STEM demos, and informational sessions about science and tech-related academic paths."
-  },
-  {
-    "label": "History Research Internship",
-    "contact": {
-      "firstName": "Alexander",
-      "lastName": "Lewis",
-      "email": "alexander.lewis@historyresearch.com",
-      "phone": "555-234-5679"
-    },
-    "location": {
-      "address": "456 Heritage Lane",
-      "city": "Philadelphia",
-      "country": "USA"
-    },
-    "photo": "https://example.com/photos/history_internship.jpg",
-    "description": "In the History Research Internship, students will analyze historical documents, assist in archiving, and contribute to heritage projects under the mentorship of researchers."
-  },
-  {
-    "label": "Photography Contest",
-    "contact": {
-      "firstName": "Charlotte",
-      "lastName": "Walker",
-      "email": "charlotte.walker@photoart.com",
-      "phone": "555-345-6780"
-    },
-    "location": {
-      "address": "789 Snapshot Avenue",
-      "city": "Miami",
-      "country": "USA"
-    },
-    "photo": "https://example.com/photos/finance_workshop.jpg",
-    "description": "The Photography Contest invites teens to capture compelling images based on a theme, learn framing and editing skills, and submit their work for public exhibition."
-  },
-  {
-    "label": "Finance Workshop",
-    "contact": {
-      "firstName": "Benjamin",
-      "lastName": "Hall",
-      "email": "benjamin.hall@financeworkshop.com",
-      "phone": "555-456-7892"
-    },
-    "location": {
-      "address": "321 Money Street",
-      "city": "Dallas",
-      "country": "USA"
-    },
-    "photo": "https://example.com/photos/finance_workshop.jpg",
-    "description": "The Finance Workshop teaches students about budgeting, investing, and financial planning through interactive simulations, group discussions, and real-world case studies."
-  },
-  {
-    "label": "Health Awareness Event",
-    "contact": {
-      "firstName": "Amelia",
-      "lastName": "Young",
-      "email": "amelia.young@healthawareness.com",
-      "phone": "555-567-8903"
-    },
-    "location": {
-      "address": "654 Wellness Blvd",
-      "city": "Phoenix",
-      "country": "USA"
-    },
-    "photo": "https://example.com/photos/health_event.jpg",
-    "description": "During the Health Awareness Event, students will engage in organizing wellness booths, creating educational materials, and leading peer activities focused on healthy living."
+    "photo": "https://randomuser.me/api/portraits/men/8.jpg",
+    "description": "Solve case studies and pitch ideas in a team setting."
   }
 ]
-

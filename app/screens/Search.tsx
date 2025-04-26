@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { Avatar, Button } from "react-native-paper";
 import data from "../data/mock_api.json";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function SearchScreen({ navigation }) {
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -38,9 +39,14 @@ export default function SearchScreen({ navigation }) {
     setSelectedOpportunity(null);
   };
 
-  const navigateToChat = (user) => {
-    const userName = `${user.contact.firstName} ${user.contact.lastName}`;
-    navigation.navigate("Home", { userName });
+  const navigateToChat = async(user) => {
+    const chatUsers = JSON.parse(await AsyncStorage.getItem("chatUsers") || "[]") || [];
+    const userExists = chatUsers.some((chatUser) => chatUser === user.id);
+    if (!userExists) {
+      chatUsers.push(user.id);
+      await AsyncStorage.setItem("chatUsers", JSON.stringify(chatUsers));
+    }
+    navigation.navigate("Home", { id: user.id });
   };
 
   if (selectedOpportunity) {
@@ -52,7 +58,7 @@ export default function SearchScreen({ navigation }) {
             <Avatar.Image
               size={80}
               source={{
-                uri: selectedOpportunity.photo || `https://randomuser.me/api/portraits/men/1.jpg`,
+                uri: selectedOpportunity.photo,
               }}
             />
             <Text style={styles.Contact}>

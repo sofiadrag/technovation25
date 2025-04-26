@@ -78,17 +78,6 @@ const MainNavigator = () => (
                 ),
             }}
         />
-        <Tab.Screen
-            name="Chat"
-            component={ChatScreen}
-            options={{
-                headerShown: false,
-                tabBarLabel: 'Chat',
-                tabBarIcon: ({ color }) => (
-                    <MaterialIcons name="chat" size={24} color="grey" />
-                ),
-            }}
-        />
     </Tab.Navigator>
 );
 

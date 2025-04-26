@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     View,
     Text,
@@ -13,53 +13,68 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons'; // Import Material Icons
 import { Avatar } from 'react-native-paper'; // Import Avatar from react-native-paper
-
+import Data from '../data/mock_api.json'; // Import userName from mock_api.json
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ChatScreen = ({ route, navigation }) => {
-    const { userName } = route.params; // Get the user's name from navigation params
+    const { id } = route.params; // Get the user's name from navigation params
+    const user = Data.find((user) => user.id === id); // Find the user in the data
     const [allMessages, setAllMessages] = useState<{ [key: string]: { id: string; text: string }[] }>({}); // State to store messages for all users
     const [input, setInput] = useState(''); // State to store the current input
 
-    const userMessages = allMessages[userName] || []; // Get messages for the current user
+    const userMessages = allMessages[id] || []; // Get messages for the current user
+    useEffect(() => {
+        const fetchMessages = async () => {
+            const storedMessages = await AsyncStorage.getItem('messages'); // Fetch messages from AsyncStorage
+            if (storedMessages) {
+                setAllMessages(JSON.parse(storedMessages));
+            }
+        };
 
+        fetchMessages();
+    }, [route.params?.id]); // Fetch messages when the component mounts
     const sendMessage = () => {
         if (input.trim()) {
             const newMessage = { id: Date.now().toString(), text: input };
-            const updatedMessages = { ...allMessages, [userName]: [...userMessages, newMessage] };
+            const updatedMessages = { ...allMessages, [id]: [...userMessages, newMessage] };
             setAllMessages(updatedMessages); // Update the messages for the current user
             setInput(''); // Clear the input field
         }
     };
 
+    const onBackButtonPress = async () => {
+        await AsyncStorage.setItem('messages', JSON.stringify(allMessages)); // Save messages to AsyncStorage
+        navigation.navigate('Main'); // Navigate back to the main screen
+    }
+    const wipeAllMessages = async () => {
+        await AsyncStorage.removeItem('messages'); // Clear all messages from AsyncStorage
+        setAllMessages({});
+    };
     return (
         <KeyboardAvoidingView
             style={styles.container}
-            behavior={Platform.OS === 'ios' ? 'padding' : undefined} // Adjust for iOS or Android
+            behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.innerContainer}>
-                    {/* Header */}
                     <View style={styles.header}>
-                        {/* Avatar */}
                         <Avatar.Image
                             size={50}
                             source={{
-                                uri: `https://randomuser.me/api/portraits/men/${userName.length % 100}.jpg`,
+                                uri: user?.photo,
                             }}
                             style={[styles.avatar, { backgroundColor: "#FFFFFF" }]}
                         />
-
-                        {/* Header Text */}
-                        <Text style={styles.headerText}>Chat with {userName}</Text>
-                        {/* Back Button */}
+                        <Text style={styles.headerText}>Chat with {user?.contact.firstName} {user?.contact.lastName}</Text>
                         <View style={styles.backButtonContainer}>
-                            <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.backButton}>
+                            <TouchableOpacity onPress={onBackButtonPress} style={styles.backButtonContainer}>
                                 <Text style={styles.backButtonText}>Back</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={wipeAllMessages} style={styles.backButtonContainer}>
+                                <Text style={styles.backButtonText}>Wipe All Messages</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
-
-                    {/* Messages List */}
                     <FlatList
                         data={userMessages}
                         keyExtractor={(item) => item.id}
@@ -70,30 +85,23 @@ const ChatScreen = ({ route, navigation }) => {
                         )}
                         contentContainerStyle={styles.messagesContainer}
                     />
-
-                    {/* Input Field */}
                     <View style={styles.inputContainer}>
-                        {/* Attachments Button */}
                         <TouchableOpacity style={styles.attachmentsButton} onPress={() => console.log('Attachments pressed')}>
-                            <Icon name="attach-file" size={24} color="#825C96"/> {/* Attach file icon */}
+                            <Icon name="attach-file" size={24} color="#825C96" />
                         </TouchableOpacity>
-
-                        {/* Text Input */}
                         <TextInput
                             style={styles.textInput}
                             placeholder="Type a message..."
                             value={input}
                             onChangeText={setInput}
                         />
-
-                        {/* Send Button */}
                         <TouchableOpacity
                             style={[
                                 styles.sendButton,
-                                input.trim() === '' && styles.disabledSendButton, // Apply disabled style if input is empty
+                                input.trim() === '' && styles.disabledSendButton,
                             ]}
                             onPress={sendMessage}
-                            disabled={input.trim() === ''} // Disable button if input is empty
+                            disabled={input.trim() === ''}
                         >
                             <Text style={styles.sendButtonText}>Send</Text>
                         </TouchableOpacity>
@@ -194,5 +202,4 @@ const styles = StyleSheet.create({
         marginRight: 20,
     },
 });
-
 export default ChatScreen;
