@@ -46,7 +46,7 @@ const HomeScreen = () => {
           style={styles.input}
           value={input}
           onChangeText={setInput}
-          placeholder="Scrie o întrebare despre carieră..."
+          placeholder="Pune o intrebare"
         />
         <Button title="Trimite" onPress={sendMessage} />
       </View>
