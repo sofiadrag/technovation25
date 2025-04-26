@@ -15,20 +15,9 @@ import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 import { StyleProp, View, ViewStyle } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-auth.setPersistence(getReactNativePersistence(ReactNativeAsyncStorage));
 
 const LoginScreen = ({ navigation }: any) => {
 
-    onAuthStateChanged(auth, user => {
-        if (user != null) {
-            AsyncStorage.setItem('@user', JSON.stringify(user))
-                .then(() => navigation.navigate('Main'));
-        } else {
-            console.log('User is signed out');
-        }
-    });
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -40,12 +29,7 @@ const LoginScreen = ({ navigation }: any) => {
     };
 
     const signIn = async () => {
-        try{
-            const signInResult = await signInWithEmailAndPassword(auth, email, password);
-            console.log('User signed in: ', signInResult)
-        } catch (error) {
-            console.log('Error signing in: ', error);
-        }
+        navigation.navigate('Main');
     }
 
     return (

@@ -21,17 +21,7 @@ const MainNavigator = () => (
                 ),
             }}
         />
-        <Tab.Screen
-            name="Items"
-            component={ItemScreen}
-            options={{
-                headerShown: false,
-                tabBarLabel: 'Items',
-                tabBarIcon: ({ color }) => (
-                    <Icon name="table" color={color} size={26} />
-                ),
-            }}
-        />       
+        
     </Tab.Navigator>
 );
 

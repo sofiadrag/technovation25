@@ -11,7 +11,6 @@ const HomeScreen = ({ navigation }: any) => {
 
     return (
         <MainLayout>
-            <Paragraph>Hello!</Paragraph>
        </MainLayout>
     );
 }
