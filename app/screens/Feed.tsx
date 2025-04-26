@@ -37,7 +37,7 @@ const FeedScreen = () => {
 
   return (
     <ScrollView
-    style={{ backgroundColor: '#fff' }}
+    style={{ backgroundColor: '##DBCCF1' }}
     contentContainerStyle={[styles.container, { flexGrow: 1 }]}
     >
       <Text style={styles.title}>My Feed</Text>
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     paddingTop: 75,
     paddingHorizontal: 10,
     alignItems: 'center',
-    backgroundColor: '#F5F9C8',
+    backgroundColor: '#DBCCF1',
   },
   title: {
     fontSize: 24,
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     width: '100%',
     borderRadius: 10,
     elevation: 3,
-    backgroundColor: '#F5F9C8',
+    backgroundColor: '#DBCCF1',
     padding: 10,
   },
 });
