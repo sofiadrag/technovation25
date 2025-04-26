@@ -1,7 +1,7 @@
 import React from "react";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ChatScreen from "./Chat";
+import ChatScreen from "./ChatAI";
 import SearchScreen from "./Search";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import Entypo from '@expo/vector-icons/Entypo';
