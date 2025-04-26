@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { View, TextInput, Button, ScrollView, StyleSheet, ActivityIndicator, Text } from "react-native";
 import { Paragraph } from "react-native-paper";
 import MainLayout from "./Layout";
-import { fetchGeminiResponse } from "utils/geminiApi"; 
+import { fetchGeminiResponse } from "./geminiApi"; 
 
-const HomeScreen = () => {
+const ChatScreen = () => {
   const [messages, setMessages] = useState([{ sender: "user", text: "" }]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -13,7 +13,7 @@ const HomeScreen = () => {
     if (!input.trim()) return;
 
     const userMessage = { sender: "user", text: input };
-    setMessages((prev) => [...prev, userMessage]);
+    setMessages((prev: any) => [...prev, userMessage]);
     setInput("");
     setLoading(true);
 
@@ -46,7 +46,7 @@ const HomeScreen = () => {
           style={styles.input}
           value={input}
           onChangeText={setInput}
-          placeholder="Scrie o întrebare despre carieră..."
+          placeholder="Pune o intrebare"
         />
         <Button title="Trimite" onPress={sendMessage} />
       </View>
@@ -54,7 +54,7 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default ChatScreen;
 
 const styles = StyleSheet.create({
   chatContainer: {
