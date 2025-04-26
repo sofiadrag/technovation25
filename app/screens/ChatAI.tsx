@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+<<<<<<< HEAD
 import { View, TextInput, Button, ScrollView, StyleSheet, ActivityIndicator, Text } from "react-native";
 import { Paragraph } from "react-native-paper";
 import MainLayout from "./Layout";
@@ -92,3 +93,23 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
 });
+=======
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import MainLayout from "./Layout";
+import { Paragraph } from "react-native-paper";
+
+const Stack = createNativeStackNavigator();
+
+const HomeScreen = ({ navigation }: any) => {
+
+    const [data, setData] = useState<{ label: string, quantity: number }[]>();
+
+    return (
+        <MainLayout>
+            <Paragraph>!</Paragraph>
+       </MainLayout>
+    );
+}
+
+export default HomeScreen;
+>>>>>>> d53da5150ff058237322a8e2a55c0fb00cf819ab

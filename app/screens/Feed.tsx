@@ -1,19 +1,87 @@
-import React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import ItemEditScreen from "./ItemEdit";
-import ItemListScreen from "./ItemList";
-import MainLayout from "./Layout";
-import { Paragraph } from "react-native-paper";
+import React from 'react';
+import { ScrollView, StyleSheet, Linking } from 'react-native';
+import { Card, Title, Paragraph, Button, Text } from 'react-native-paper';
 
-//https://reactnavigation.org/docs/hello-react-navigation
-const ItemStack = createNativeStackNavigator();
+type Opportunity = {
+  id: string;
+  name: string;
+  description: string;
+  link: string;
+};
 
-const ItemScreen = () => {
-    return (
-        <MainLayout>
-            <Paragraph>da</Paragraph>
-       </MainLayout>
-    );
-}
+const opportunities: Opportunity[] = [
+  {
+    id: '1',
+    name: 'Frontend Internship',
+    description: 'Build beautiful UIs with React and TypeScript.',
+    link: 'https://example.com/frontend',
+  },
+  {
+    id: '2',
+    name: 'AI Bootcamp',
+    description: 'Master machine learning in 12 weeks.',
+    link: 'https://example.com/ai',
+  },
+  {
+    id: '3',
+    name: 'Girls Who Code Summer Program',
+    description: 'Become a GWC Scholar to learn Game Design and Data Science.',
+    link: 'https://example.com/gwc',
+  }
+];
 
-export default ItemScreen;
+const FeedScreen = () => {
+  const handleOpenLink = (url: string) => {
+    Linking.openURL(url);
+  };
+
+  return (
+    <ScrollView
+    style={{ backgroundColor: '#fff' }}
+    contentContainerStyle={[styles.container, { flexGrow: 1 }]}
+    >
+      <Text style={styles.title}>My Feed</Text>
+      {opportunities.map((opp) => (
+        <Card key={opp.id} style={styles.card}>
+          <Card.Content>
+            <Title>{opp.name}</Title>
+            <Paragraph>{opp.description}</Paragraph>
+          </Card.Content>
+          <Card.Actions>
+          <Button
+           mode="contained"
+           buttonColor="#B191E3"
+           onPress={() => handleOpenLink(opp.link)}
+          >
+           Read More
+           </Button>
+          </Card.Actions>
+        </Card>
+      ))}
+    </ScrollView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 75,
+    paddingHorizontal: 10,
+    alignItems: 'center',
+    backgroundColor: '#F5F9C8',
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 20,
+    fontWeight: 'bold',
+  },
+  card: {
+    marginBottom: 15,
+    width: '100%',
+    borderRadius: 10,
+    elevation: 3,
+    backgroundColor: '#F5F9C8',
+    padding: 10,
+  },
+});
+
+export default FeedScreen;
