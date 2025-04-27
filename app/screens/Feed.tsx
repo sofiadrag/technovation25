@@ -49,28 +49,6 @@ const opportunities: Opportunity[] = [
     phone: '555-765-4321',
     address: '123 Coding Avenue, New York, USA',
   },
-  {
-    id: '4',
-    name: 'Marketing Internship',
-    description: 'Learn the art of marketing and campaign management.',
-    link: 'https://example.com/marketing',
-    username: 'James Taylor',
-    avatar: 'https://randomuser.me/api/portraits/men/13.jpg',
-    email: 'james.taylor@example.com',
-    phone: '555-654-3210',
-    address: '321 Marketing Blvd, Chicago, USA',
-  },
-  {
-    id: '5',
-    name: 'Data Science Bootcamp',
-    description: 'Analyze data and build predictive models.',
-    link: 'https://example.com/datascience',
-    username: 'Olivia Martinez',
-    avatar: 'https://randomuser.me/api/portraits/women/14.jpg',
-    email: 'olivia.martinez@example.com',
-    phone: '555-543-2109',
-    address: '654 Data Drive, San Francisco, USA',
-  }
 ];
 
 const FeedScreen = () => {
