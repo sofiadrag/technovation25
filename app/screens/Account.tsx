@@ -24,7 +24,7 @@ const AccountScreen = () => {
       <Text style={styles.cv}>Experience:</Text>
       <Button
            mode="contained"
-           buttonColor="#B191E3"
+           buttonColor="#825C96"
            onPress={() => alert('Edit Profile')}
           >
            Edit Profile
@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
       paddingLeft: 10,
       paddingRight:10,
       alignItems: 'center',
-      backgroundColor: '#F5F9C8',
       
     },
     title: {

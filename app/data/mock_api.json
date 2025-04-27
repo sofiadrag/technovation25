@@ -1,243 +1,362 @@
 [
   {
-    "label": "Software Engineer Internship",
+    "id": "8a15ea91-be6c-4e71-a0a6-4da485526724",
+    "label": "Cybersecurity Bootcamp",
     "contact": {
-      "firstName": "John",
-      "lastName": "Doe",
-      "email": "john.doe@techcorp.com",
-      "phone": "555-123-4567"
+      "firstName": "Liam",
+      "lastName": "Jones",
+      "email": "liam.jones@example.com",
+      "phone": "555-918-9719"
     },
     "location": {
-      "address": "123 Tech Street",
-      "city": "San Francisco",
-      "country": "USA"
-    },
-    "photo": "",
-    "description": "The Software Engineer Internship offers hands-on experience for students interested in coding, debugging, and collaborating on real-world app development projects alongside professional engineers."
-  },
-  {
-    "label": "AI Research Contest",
-    "contact": {
-      "firstName": "Alice",
-      "lastName": "Smith",
-      "email": "alice.smith@ailabs.com",
-      "phone": "555-234-5678"
-    },
-    "location": {
-      "address": "456 Innovation Drive",
-      "city": "Palo Alto",
-      "country": "USA"
-    },
-    "photo": "",
-    "description": "The AI Research Contest challenges participants to design and test AI models, present findings, and compete with peers while exploring innovative solutions to real-world problems."
-  },
-  {
-    "label": "Graphic Design Workshop",
-    "contact": {
-      "firstName": "Emma",
-      "lastName": "Johnson",
-      "email": "emma.johnson@designhub.com",
-      "phone": "555-345-6789"
-    },
-    "location": {
-      "address": "789 Creative Lane",
-      "city": "Los Angeles",
-      "country": "USA"
-    },
-    "photo": "",
-    "description": "The Graphic Design Workshop is a guided learning session where students will use tools like Adobe Photoshop and Illustrator to create digital posters, branding materials, and design portfolios."
-  },
-  {
-    "label": "Marketing Internship",
-    "contact": {
-      "firstName": "Michael",
-      "lastName": "Brown",
-      "email": "michael.brown@marketingworld.com",
-      "phone": "555-456-7890"
-    },
-    "location": {
-      "address": "321 Business Avenue",
-      "city": "New York",
-      "country": "USA"
-    },
-    "photo": "",
-    "description": "The Marketing Internship gives teens the chance to assist in campaign planning, social media management, and market analysis while working with professional marketers."
-  },
-  {
-    "label": "Medical Volunteering Program",
-    "contact": {
-      "firstName": "Sophia",
-      "lastName": "Williams",
-      "email": "sophia.williams@healthcare.org",
-      "phone": "555-567-8901"
-    },
-    "location": {
-      "address": "654 Wellness Road",
-      "city": "Chicago",
-      "country": "USA"
-    },
-    "photo": "",
-    "description": "The Medical Volunteering Program involves assisting with patient care, organizing health awareness activities, and supporting hospital staff in non-clinical tasks to understand the healthcare environment."
-  },
-  {
-    "label": "Data Science Bootcamp",
-    "contact": {
-      "firstName": "James",
-      "lastName": "Taylor",
-      "email": "james.taylor@datascience.com",
-      "phone": "555-678-9012"
-    },
-    "location": {
-      "address": "987 Analytics Blvd",
+      "address": "844 Research Road",
       "city": "Austin",
       "country": "USA"
     },
-    "photo": "",
-    "description": "The Data Science Bootcamp is an intensive program where teens will learn to clean datasets, build visualizations, and create simple predictive models using Python or Excel."
+    "photo": "https://randomuser.me/api/portraits/women/56.jpg",
+    "description": "Learn and develop abilities in a dynamic setting.",
+    "link": "https://example.com/cybersecurity-bootcamp"
   },
   {
-    "label": "Art Exhibition Volunteering",
+    "id": "5aecdcb2-334d-49e7-8675-5b76730df2c3",
+    "label": "Robotics Innovation Program",
+    "contact": {
+      "firstName": "Isabella",
+      "lastName": "Williams",
+      "email": "isabella.williams@example.com",
+      "phone": "555-891-1067"
+    },
+    "location": {
+      "address": "564 Discovery Blvd",
+      "city": "San Jose",
+      "country": "USA"
+    },
+    "photo": "https://randomuser.me/api/portraits/women/50.jpg",
+    "description": "Explore new fields and expand your expertise.",
+    "link": "https://example.com/robotics-innovation-program"
+  },
+  {
+    "id": "9d345d0b-b517-4308-90b2-b2bae2d36bff",
+    "label": "Virtual Reality Workshop",
+    "contact": {
+      "firstName": "Isabella",
+      "lastName": "Martinez",
+      "email": "isabella.martinez@example.com",
+      "phone": "555-992-4957"
+    },
+    "location": {
+      "address": "459 Discovery Blvd",
+      "city": "Chicago",
+      "country": "USA"
+    },
+    "photo": "https://randomuser.me/api/portraits/women/12.jpg",
+    "description": "Participate in hands-on sessions and grow creatively.",
+    "link": "https://example.com/virtual-reality-workshop"
+  },
+  {
+    "id": "6eed664d-9b4d-4340-83a8-c4f94ebaa2e3",
+    "label": "Mobile App Development Internship",
+    "contact": {
+      "firstName": "Benjamin",
+      "lastName": "Rodriguez",
+      "email": "benjamin.rodriguez@example.com",
+      "phone": "555-116-4980"
+    },
+    "location": {
+      "address": "919 Discovery Blvd",
+      "city": "Los Angeles",
+      "country": "USA"
+    },
+    "photo": "https://randomuser.me/api/portraits/men/91.jpg",
+    "description": "Gain practical experience and enhance your skills.",
+    "link": "https://example.com/mobile-app-development-internship"
+  },
+  {
+    "id": "ebb4cfb5-b0da-40a2-b17b-3b6556a479a6",
+    "label": "Environmental Science Research",
+    "contact": {
+      "firstName": "James",
+      "lastName": "Garcia",
+      "email": "james.garcia@example.com",
+      "phone": "555-726-7575"
+    },
+    "location": {
+      "address": "382 Education Street",
+      "city": "Austin",
+      "country": "USA"
+    },
+    "photo": "https://randomuser.me/api/portraits/men/29.jpg",
+    "description": "Learn and develop abilities in a dynamic setting.",
+    "link": "https://example.com/environmental-science-research"
+  },
+  {
+    "id": "ab39cb82-9542-4eca-bdd4-80c865661f99",
+    "label": "Music Production Course",
+    "contact": {
+      "firstName": "Noah",
+      "lastName": "Davis",
+      "email": "noah.davis@example.com",
+      "phone": "555-258-7568"
+    },
+    "location": {
+      "address": "620 Innovation Lane",
+      "city": "Los Angeles",
+      "country": "USA"
+    },
+    "photo": "https://randomuser.me/api/portraits/women/74.jpg",
+    "description": "Learn and develop abilities in a dynamic setting.",
+    "link": "https://example.com/music-production-course"
+  },
+  {
+    "id": "ac935084-541c-4b5e-b269-9a4c81ee42fc",
+    "label": "Architectural Design Internship",
     "contact": {
       "firstName": "Olivia",
       "lastName": "Martinez",
-      "email": "olivia.martinez@artexhibit.com",
-      "phone": "555-789-0123"
+      "email": "olivia.martinez@example.com",
+      "phone": "555-285-7939"
     },
     "location": {
-      "address": "123 Gallery Street",
-      "city": "Portland",
+      "address": "245 Innovation Lane",
+      "city": "New York",
       "country": "USA"
     },
-    "photo": "",
-    "description": "As part of Art Exhibition Volunteering, students will help curate artworks, set up displays, assist guests, and learn about event coordination in the art world."
+    "photo": "https://randomuser.me/api/portraits/women/75.jpg",
+    "description": "Gain practical experience and enhance your skills.",
+    "link": "https://example.com/architectural-design-internship"
   },
   {
-    "label": "Business Strategy Contest",
+    "id": "7b718463-c5b8-4b27-89d1-a717ba3f6ff8",
+    "label": "Political Science Debate Camp",
     "contact": {
-      "firstName": "William",
-      "lastName": "Anderson",
-      "email": "william.anderson@bizcontest.com",
-      "phone": "555-890-1234"
+      "firstName": "Noah",
+      "lastName": "Williams",
+      "email": "noah.williams@example.com",
+      "phone": "555-949-5725"
     },
     "location": {
-      "address": "456 Corporate Plaza",
-      "city": "Boston",
+      "address": "491 Education Street",
+      "city": "Chicago",
       "country": "USA"
     },
-    "photo": "",
-    "description": "In the Business Strategy Contest, students will form teams to solve case studies, pitch ideas, and create mock business plans judged by industry professionals."
+    "photo": "https://randomuser.me/api/portraits/women/24.jpg",
+    "description": "Learn and develop abilities in a dynamic setting.",
+    "link": "https://example.com/political-science-debate-camp"
   },
   {
-    "label": "Nursing Internship",
+    "id": "462e83e2-9409-4e36-abb0-5ea4e1dece4a",
+    "label": "Creative Writing Workshop",
     "contact": {
-      "firstName": "Isabella",
-      "lastName": "Thomas",
-      "email": "isabella.thomas@nursingcare.com",
-      "phone": "555-901-2345"
+      "firstName": "Noah",
+      "lastName": "Johnson",
+      "email": "noah.johnson@example.com",
+      "phone": "555-971-5144"
     },
     "location": {
-      "address": "789 Caregiver Lane",
-      "city": "Seattle",
-      "country": "USA"
-    },
-    "photo": "",
-    "description": "The Nursing Internship allows teens to shadow nurses, learn basic patient care techniques, and support administrative work in clinical settings, gaining insight into medical careers."
-  },
-  {
-    "label": "Automotive Technician Training",
-    "contact": {
-      "firstName": "Ethan",
-      "lastName": "Harris",
-      "email": "ethan.harris@autotech.com",
-      "phone": "555-012-3456"
-    },
-    "location": {
-      "address": "321 Mechanic Road",
-      "city": "Detroit",
-      "country": "USA"
-    },
-    "photo": "",
-    "description": "This training prepares teens for technical trades by teaching them how to inspect, maintain, and repair vehicle systems under the guidance of certified technicians."
-  },
-  {
-    "label": "STEM College Fair",
-    "contact": {
-      "firstName": "Mia",
-      "lastName": "Clark",
-      "email": "mia.clark@stemfair.com",
-      "phone": "555-123-4568"
-    },
-    "location": {
-      "address": "123 Science Blvd",
-      "city": "San Diego",
-      "country": "USA"
-    },
-    "photo": "https://example.com/photos/stem_college_fair.jpg",
-    "description": "The STEM College Fair connects teens with university representatives, hands-on STEM demos, and informational sessions about science and tech-related academic paths."
-  },
-  {
-    "label": "History Research Internship",
-    "contact": {
-      "firstName": "Alexander",
-      "lastName": "Lewis",
-      "email": "alexander.lewis@historyresearch.com",
-      "phone": "555-234-5679"
-    },
-    "location": {
-      "address": "456 Heritage Lane",
+      "address": "227 Creative Avenue",
       "city": "Philadelphia",
       "country": "USA"
     },
-    "photo": "https://example.com/photos/history_internship.jpg",
-    "description": "In the History Research Internship, students will analyze historical documents, assist in archiving, and contribute to heritage projects under the mentorship of researchers."
+    "photo": "https://randomuser.me/api/portraits/women/51.jpg",
+    "description": "Participate in hands-on sessions and grow creatively.",
+    "link": "https://example.com/creative-writing-workshop"
   },
   {
-    "label": "Photography Contest",
+    "id": "65c15cf5-69c6-44b0-90db-fe7684f2437c",
+    "label": "Space Exploration Program",
     "contact": {
-      "firstName": "Charlotte",
-      "lastName": "Walker",
-      "email": "charlotte.walker@photoart.com",
-      "phone": "555-345-6780"
+      "firstName": "Noah",
+      "lastName": "Johnson",
+      "email": "noah.johnson@example.com",
+      "phone": "555-879-3377"
     },
     "location": {
-      "address": "789 Snapshot Avenue",
-      "city": "Miami",
+      "address": "477 Discovery Blvd",
+      "city": "Austin",
       "country": "USA"
     },
-    "photo": "https://example.com/photos/finance_workshop.jpg",
-    "description": "The Photography Contest invites teens to capture compelling images based on a theme, learn framing and editing skills, and submit their work for public exhibition."
+    "photo": "https://randomuser.me/api/portraits/women/19.jpg",
+    "description": "Explore new fields and expand your expertise.",
+    "link": "https://example.com/space-exploration-program"
   },
   {
-    "label": "Finance Workshop",
+    "id": "3d972b35-26b2-4bd3-a150-3499768b19f3",
+    "label": "Legal Studies Summer School",
     "contact": {
       "firstName": "Benjamin",
-      "lastName": "Hall",
-      "email": "benjamin.hall@financeworkshop.com",
-      "phone": "555-456-7892"
+      "lastName": "Martinez",
+      "email": "benjamin.martinez@example.com",
+      "phone": "555-465-4995"
     },
     "location": {
-      "address": "321 Money Street",
-      "city": "Dallas",
+      "address": "319 Innovation Lane",
+      "city": "San Diego",
       "country": "USA"
     },
-    "photo": "https://example.com/photos/finance_workshop.jpg",
-    "description": "The Finance Workshop teaches students about budgeting, investing, and financial planning through interactive simulations, group discussions, and real-world case studies."
+    "photo": "https://randomuser.me/api/portraits/women/34.jpg",
+    "description": "Learn and develop abilities in a dynamic setting.",
+    "link": "https://example.com/legal-studies-summer-school"
   },
   {
-    "label": "Health Awareness Event",
+    "id": "32fb4e64-610e-4a5c-b578-de303b15fbf4",
+    "label": "Biotech Research Internship",
     "contact": {
-      "firstName": "Amelia",
-      "lastName": "Young",
-      "email": "amelia.young@healthawareness.com",
-      "phone": "555-567-8903"
+      "firstName": "William",
+      "lastName": "Davis",
+      "email": "william.davis@example.com",
+      "phone": "555-305-4486"
     },
     "location": {
-      "address": "654 Wellness Blvd",
+      "address": "655 Education Street",
+      "city": "Los Angeles",
+      "country": "USA"
+    },
+    "photo": "https://randomuser.me/api/portraits/women/60.jpg",
+    "description": "Gain practical experience and enhance your skills.",
+    "link": "https://example.com/biotech-research-internship"
+  },
+  {
+    "id": "93fd6d92-febb-4447-a633-0ec41b7034fa",
+    "label": "Hospitality Management Workshop",
+    "contact": {
+      "firstName": "Olivia",
+      "lastName": "Rodriguez",
+      "email": "olivia.rodriguez@example.com",
+      "phone": "555-629-6661"
+    },
+    "location": {
+      "address": "110 Education Street",
+      "city": "San Jose",
+      "country": "USA"
+    },
+    "photo": "https://randomuser.me/api/portraits/men/77.jpg",
+    "description": "Participate in hands-on sessions and grow creatively.",
+    "link": "https://example.com/hospitality-management-workshop"
+  },
+  {
+    "id": "b9a39a00-c978-43b7-9b90-1c47747b05b8",
+    "label": "Film Directing Course",
+    "contact": {
+      "firstName": "James",
+      "lastName": "Smith",
+      "email": "james.smith@example.com",
+      "phone": "555-988-7257"
+    },
+    "location": {
+      "address": "914 Creative Avenue",
+      "city": "Los Angeles",
+      "country": "USA"
+    },
+    "photo": "https://randomuser.me/api/portraits/women/11.jpg",
+    "description": "Learn and develop abilities in a dynamic setting.",
+    "link": "https://example.com/film-directing-course"
+  },
+  {
+    "id": "d0ae77e2-52c1-49e7-a3f5-2773cd9008ff",
+    "label": "Psychology Research Internship",
+    "contact": {
+      "firstName": "Ava",
+      "lastName": "Garcia",
+      "email": "ava.garcia@example.com",
+      "phone": "555-749-4273"
+    },
+    "location": {
+      "address": "755 Creative Avenue",
+      "city": "Los Angeles",
+      "country": "USA"
+    },
+    "photo": "https://randomuser.me/api/portraits/women/81.jpg",
+    "description": "Gain practical experience and enhance your skills.",
+    "link": "https://example.com/psychology-research-internship"
+  },
+  {
+    "id": "a4421017-3355-4afe-8bf3-32f65c7dceb8",
+    "label": "Marine Biology Expedition",
+    "contact": {
+      "firstName": "James",
+      "lastName": "Miller",
+      "email": "james.miller@example.com",
+      "phone": "555-177-7333"
+    },
+    "location": {
+      "address": "451 Creative Avenue",
+      "city": "Houston",
+      "country": "USA"
+    },
+    "photo": "https://randomuser.me/api/portraits/men/52.jpg",
+    "description": "Learn and develop abilities in a dynamic setting.",
+    "link": "https://example.com/marine-biology-expedition"
+  },
+  {
+    "id": "d9cbf0f9-ff98-40f9-8694-8c2e7c5a1329",
+    "label": "Sustainability Leadership Program",
+    "contact": {
+      "firstName": "Isabella",
+      "lastName": "Davis",
+      "email": "isabella.davis@example.com",
+      "phone": "555-341-3739"
+    },
+    "location": {
+      "address": "439 Creative Avenue",
+      "city": "Los Angeles",
+      "country": "USA"
+    },
+    "photo": "https://randomuser.me/api/portraits/women/23.jpg",
+    "description": "Explore new fields and expand your expertise.",
+    "link": "https://example.com/sustainability-leadership-program"
+  },
+  {
+    "id": "9cc94366-65b7-473d-b593-efef8b3ef3b8",
+    "label": "Blockchain Technology Bootcamp",
+    "contact": {
+      "firstName": "James",
+      "lastName": "Smith",
+      "email": "james.smith@example.com",
+      "phone": "555-506-5523"
+    },
+    "location": {
+      "address": "520 Research Road",
+      "city": "San Diego",
+      "country": "USA"
+    },
+    "photo": "https://randomuser.me/api/portraits/women/94.jpg",
+    "description": "Learn and develop abilities in a dynamic setting.",
+    "link": "https://example.com/blockchain-technology-bootcamp"
+  },
+  {
+    "id": "a4b61d4d-0d28-441b-bb9e-a99e65aff5dd",
+    "label": "Augmented Reality Game Jam",
+    "contact": {
+      "firstName": "Sophia",
+      "lastName": "Rodriguez",
+      "email": "sophia.rodriguez@example.com",
+      "phone": "555-982-8382"
+    },
+    "location": {
+      "address": "181 Creative Avenue",
       "city": "Phoenix",
       "country": "USA"
     },
-    "photo": "https://example.com/photos/health_event.jpg",
-    "description": "During the Health Awareness Event, students will engage in organizing wellness booths, creating educational materials, and leading peer activities focused on healthy living."
+    "photo": "https://randomuser.me/api/portraits/men/86.jpg",
+    "description": "Learn and develop abilities in a dynamic setting.",
+    "link": "https://example.com/augmented-reality-game-jam"
+  },
+  {
+    "id": "94500f1c-77d4-425f-9ff7-6ef5ebba2a98",
+    "label": "Sports Medicine Internship",
+    "contact": {
+      "firstName": "Isabella",
+      "lastName": "Williams",
+      "email": "isabella.williams@example.com",
+      "phone": "555-903-2312"
+    },
+    "location": {
+      "address": "670 Discovery Blvd",
+      "city": "San Diego",
+      "country": "USA"
+    },
+    "photo": "https://randomuser.me/api/portraits/women/37.jpg",
+    "description": "Gain practical experience and enhance your skills.",
+    "link": "https://example.com/sports-medicine-internship"
   }
 ]
-
