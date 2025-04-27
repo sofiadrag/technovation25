@@ -83,7 +83,7 @@ const MainNavigator = () => (
         />
         <Tab.Screen
             name="Chat"
-            component={ChatScreen}
+            component={({ route, navigation }: { route: any; navigation: import('@react-navigation/native').NavigationProp<any> }) => <ChatScreen route={route} navigation={navigation} />}
             options={{
                 headerShown: false,
                 tabBarLabel: 'Chat',
