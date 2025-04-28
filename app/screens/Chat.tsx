@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     View,
     Text,
@@ -11,55 +11,85 @@ import {
     Keyboard,
     TouchableWithoutFeedback,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons'; // Import Material Icons
-import { Avatar } from 'react-native-paper'; // Import Avatar from react-native-paper
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Avatar, Card } from 'react-native-paper';
+import Data from '../data/mock_api.json';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
+type RootStackParamList = {
+    Chat: { id: string };
+    Main: undefined;
+};
 
-const ChatScreen = ({ route, navigation }) => {
-    const { userName } = route.params; // Get the user's name from navigation params
-    const [allMessages, setAllMessages] = useState<{ [key: string]: { id: string; text: string }[] }>({}); // State to store messages for all users
-    const [input, setInput] = useState(''); // State to store the current input
+type ChatScreenRouteProp = RouteProp<RootStackParamList, 'Chat'>;
+type ChatScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Chat'>;
 
-    const userMessages = allMessages[userName] || []; // Get messages for the current user
+const ChatScreen = ({ route, navigation }: { route: ChatScreenRouteProp; navigation: ChatScreenNavigationProp }) => {
+    const { id } = route.params;
+    const user = Data.find((user) => user.id === id);
+    const [allMessages, setAllMessages] = useState<{ [key: string]: { id: string; text: string }[] }>({});
+    const [input, setInput] = useState('');
+
+    const userMessages = allMessages[id] || [];
+    useEffect(() => {
+        const fetchMessages = async () => {
+            const storedMessages = await AsyncStorage.getItem('messages');
+            if (storedMessages) {
+                setAllMessages(JSON.parse(storedMessages));
+            }
+        };
+
+        fetchMessages();
+    }, [route.params?.id]);
 
     const sendMessage = () => {
         if (input.trim()) {
             const newMessage = { id: Date.now().toString(), text: input };
-            const updatedMessages = { ...allMessages, [userName]: [...userMessages, newMessage] };
-            setAllMessages(updatedMessages); // Update the messages for the current user
-            setInput(''); // Clear the input field
+            const updatedMessages = { ...allMessages, [id]: [...userMessages, newMessage] };
+            setAllMessages(updatedMessages);
+            setInput('');
         }
+    };
+
+    const onBackButtonPress = async () => {
+        await AsyncStorage.setItem('messages', JSON.stringify(allMessages));
+        navigation.navigate('Main');
+    };
+
+    const wipeAllMessages = async () => {
+        await AsyncStorage.removeItem('messages');
+        setAllMessages({});
     };
 
     return (
         <KeyboardAvoidingView
             style={styles.container}
-            behavior={Platform.OS === 'ios' ? 'padding' : undefined} // Adjust for iOS or Android
+            behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.innerContainer}>
-                    {/* Header */}
+                    <Card>
                     <View style={styles.header}>
-                        {/* Avatar */}
                         <Avatar.Image
                             size={50}
                             source={{
-                                uri: `https://randomuser.me/api/portraits/men/${userName.length % 100}.jpg`,
+                                uri: user?.photo,
                             }}
                             style={[styles.avatar, { backgroundColor: "#FFFFFF" }]}
                         />
-
-                        {/* Header Text */}
-                        <Text style={styles.headerText}>Chat with {userName}</Text>
-                        {/* Back Button */}
-                        <View style={styles.backButtonContainer}>
-                            <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.backButton}>
-                                <Text style={styles.backButtonText}>Back</Text>
-                            </TouchableOpacity>
-                        </View>
+                        <Text style={styles.headerText}>{user?.contact.firstName} {user?.contact.lastName}</Text>
+                        <TouchableOpacity onPress={onBackButtonPress} style={styles.backButtonContainer}>
+                            <Text style={styles.backButtonText}>Back</Text>
+                        </TouchableOpacity>
                     </View>
-
-                    {/* Messages List */}
+                    </Card>
+                    <View>
+                        <TouchableOpacity onPress={wipeAllMessages}>
+                            <Text style={styles.backButtonText}>Wipe All Messages</Text>
+                        </TouchableOpacity>
+                    </View>
                     <FlatList
                         data={userMessages}
                         keyExtractor={(item) => item.id}
@@ -70,30 +100,24 @@ const ChatScreen = ({ route, navigation }) => {
                         )}
                         contentContainerStyle={styles.messagesContainer}
                     />
-
-                    {/* Input Field */}
                     <View style={styles.inputContainer}>
-                        {/* Attachments Button */}
                         <TouchableOpacity style={styles.attachmentsButton} onPress={() => console.log('Attachments pressed')}>
-                            <Icon name="attach-file" size={24} color="#825C96"/> {/* Attach file icon */}
+                            <Icon name="attach-file" size={24} color="#825C96" />
                         </TouchableOpacity>
-
-                        {/* Text Input */}
                         <TextInput
                             style={styles.textInput}
                             placeholder="Type a message..."
+                            placeholderTextColor="#825C96" 
                             value={input}
                             onChangeText={setInput}
                         />
-
-                        {/* Send Button */}
                         <TouchableOpacity
                             style={[
                                 styles.sendButton,
-                                input.trim() === '' && styles.disabledSendButton, // Apply disabled style if input is empty
+                                input.trim() === '' && styles.disabledSendButton,
                             ]}
                             onPress={sendMessage}
-                            disabled={input.trim() === ''} // Disable button if input is empty
+                            disabled={input.trim() === ''}
                         >
                             <Text style={styles.sendButtonText}>Send</Text>
                         </TouchableOpacity>
@@ -115,31 +139,32 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 30,
+        paddingHorizontal: 20,
         backgroundColor: '#825C96',
+        height: 130,
     },
     backButtonContainer: {
-        backgroundColor: '#DBCCF1', // Light purple background
-        borderRadius: 10, // Rounded corners
-        padding: 10, // Padding inside the container
-        marginRight: -10,
-        marginTop: 15, // Space above the button
+        backgroundColor: '#DBCCF1',
+        borderRadius: 20,
+        padding: 12,
+        marginLeft: 10,
+        marginTop: 30, 
     },
     backButtonText: {
-        color: '#FFF', // White text color
+        color: '#FFF',
         fontSize: 16,
     },
     avatar: {
-        marginRight: -7.5,
-        marginTop: 15, // Space above the avatar
+        marginRight: 10,
+        marginTop: 30,
     },
     headerText: {
         color: '#FFF',
         fontSize: 18,
         fontWeight: 'bold',
-        flex: 1, // Allow the text to take up remaining space
-        textAlign: 'center', // Center-align the text
-        marginTop: 15, // Space above the text
+        flex: 1,
+        textAlign: 'center',
+        marginTop: 30,
     },
     messagesContainer: {
         flexGrow: 1,
@@ -158,10 +183,11 @@ const styles = StyleSheet.create({
     inputContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 10,
+        padding: 20,
         borderTopWidth: 1,
         borderTopColor: '#CCC',
         backgroundColor: '#FFF',
+        height: 100,
     },
     textInput: {
         flex: 1,
@@ -178,7 +204,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
     disabledSendButton: {
-        backgroundColor: '#CCC', // Grey out the button when disabled
+        backgroundColor: '#CCC',
     },
     sendButtonText: {
         color: '#FFF',
