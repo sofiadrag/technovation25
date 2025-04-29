@@ -1,21 +1,18 @@
-import geminiconfig from "../geminiconfig.json"
 export async function fetchGeminiResponse(prompt: any) {
-
   const key = geminiconfig.api_key;
 
-   const body = {
+  const body = {
     contents: [
       {
         parts: [
-          { text: prompt }
+          { text: prompt } 
         ]
       }
     ]
   };
 
-
   try {
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`, {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,5 +25,5 @@ export async function fetchGeminiResponse(prompt: any) {
   } catch (error) {
     console.error("Eroare Gemini:", error);
     return "A apărut o eroare.";
-  }
+  }
 }
