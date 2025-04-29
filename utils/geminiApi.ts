@@ -4,9 +4,6 @@ export async function fetchGeminiResponse(prompt: any) {
   const key = geminiconfig.api_key;
 
    const body = {
-    config:{
-      
-    },
     contents: [
       {
         parts: [
