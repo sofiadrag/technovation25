@@ -1,18 +1,24 @@
+import geminiconfig from "../geminiconfig.json"
 export async function fetchGeminiResponse(prompt: any) {
-  const API_KEY = "AIzaSyAXaLllif_4bHHF21oUpX8M5btwMHYPj2A"; 
 
-  const body = {
+  const key = geminiconfig.api_key;
+
+   const body = {
+    config:{
+      
+    },
     contents: [
       {
         parts: [
-          { text: prompt } 
+          { text: prompt }
         ]
       }
     ]
   };
 
+
   try {
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`, {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,9 +27,9 @@ export async function fetchGeminiResponse(prompt: any) {
     });
 
     const data = await response.json();
-    return data.contents[0].parts[0].text.trim();
+    return data.candidates[0].content.parts[0].text.trim();
   } catch (error) {
     console.error("Eroare Gemini:", error);
     return "A apărut o eroare.";
-  }
+  }
 }
