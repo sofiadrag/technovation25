@@ -20,6 +20,7 @@
     "@react-navigation/native-stack": "^7.2.0",
     "@react-navigation/stack": "^7.2.10",
     "expo": "~52.0.35",
+    "expo-document-picker": "^13.0.3",
     "expo-status-bar": "~2.0.1",
     "firebase": "^11.3.1",
     "lodash.filter": "^4.6.0",
@@ -28,7 +29,9 @@
     "react": "^18.3.1",
     "react-dom": "18.3.1",
     "react-native": "0.76.3",
-    "react-native-paper": "^5.13.1"
+    "react-native-paper": "^5.13.1",
+    "react-native-pdf": "^6.7.7",
+    "react-native-webview": "^13.13.5"
   },
   "devDependencies": {
     "@babel/core": "^7.26.9",
