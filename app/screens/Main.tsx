@@ -1,7 +1,5 @@
 import React from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack'; // Import Stack Navigator
-import { NavigationContainer } from "@react-navigation/native";
 import ChatAIScreen from "./ChatAI";
 import SearchScreen from "./Search";
 import FeedScreen from "./Feed";
@@ -19,6 +17,7 @@ const Tab = createBottomTabNavigator({
         ChatAI: ChatAIScreen,
         Search: SearchScreen,
         Account: AccountScreen, 
+        Chat: ChatScreen
     }
 });
 const MainNavigator = () => (
@@ -85,9 +84,8 @@ const MainNavigator = () => (
         />
         <Tab.Screen
             name="Chat"
-            component={({ route, navigation }: { route: any; navigation: import('@react-navigation/native').NavigationProp<any> }) => <ChatScreen route={route} navigation={navigation} />}
-            options={{
-                headerShown: false,
+            component={ChatScreen}
+            options={{  headerShown: false,
                 tabBarLabel: 'Chat',
                 tabBarIcon: ({ color }) => (
                     <MaterialIcons name="chat" size={24} color="grey" />

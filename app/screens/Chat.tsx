@@ -15,7 +15,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Avatar, Card } from 'react-native-paper';
 import Data from '../data/mock_api.json';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { RouteProp } from '@react-navigation/native';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 type RootStackParamList = {
@@ -26,36 +26,43 @@ type RootStackParamList = {
 type ChatScreenRouteProp = RouteProp<RootStackParamList, 'Chat'>;
 type ChatScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Chat'>;
 
-const ChatScreen = ({ route, navigation }: { route: ChatScreenRouteProp; navigation: ChatScreenNavigationProp }) => {
-    const { id } = route.params;
-    const user = Data.find((user) => user.id === id);
+const ChatScreen = () => {
+    const route = useRoute()
+    const navigation = useNavigation()
     const [allMessages, setAllMessages] = useState<{ [key: string]: { id: string; text: string }[] }>({});
     const [input, setInput] = useState('');
-
-    const userMessages = allMessages[id] || [];
+    const [user, setUser] = useState< any | undefined>();
+    const [userMessages, setUserMessages] = useState<any[]>([]);
+   
     useEffect(() => {
+        if (!(route.params as any)?.id) return
+        setUser ( Data.find((user) => user.id === (route.params as any)?.id));
+        console.log("id" , (route.params as any)?.id)
         const fetchMessages = async () => {
             const storedMessages = await AsyncStorage.getItem('messages');
             if (storedMessages) {
-                setAllMessages(JSON.parse(storedMessages));
+                const parsedMessages = JSON.parse(storedMessages)
+                setAllMessages(parsedMessages);
+                setUserMessages(parsedMessages[(route.params as any)?.id]);
             }
         };
 
         fetchMessages();
-    }, [route.params?.id]);
+    }, [(route.params as any)?.id]);
 
     const sendMessage = () => {
         if (input.trim()) {
             const newMessage = { id: Date.now().toString(), text: input };
-            const updatedMessages = { ...allMessages, [id]: [...userMessages, newMessage] };
+            const updatedMessages = { ...allMessages, [(route.params as any)?.id]: [...userMessages, newMessage] };
             setAllMessages(updatedMessages);
+            setUserMessages([...userMessages, newMessage])
             setInput('');
         }
     };
 
     const onBackButtonPress = async () => {
         await AsyncStorage.setItem('messages', JSON.stringify(allMessages));
-        navigation.navigate('Main');
+        navigation.navigate('Main' as never);
     };
 
     const wipeAllMessages = async () => {
