@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { View, TextInput, Button, ScrollView, StyleSheet, ActivityIndicator, Text } from "react-native";
 import { Paragraph } from "react-native-paper";
 import MainLayout from "./Layout";
-import { fetchGeminiResponse } from "./geminiApi"; 
+import { fetchGeminiResponse } from "../../utils/geminiApi"; 
 
-const ChatScreen = () => {
+
+const ChatAIScreen = () => {
   const [messages, setMessages] = useState([{ sender: "user", text: "" }]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -54,7 +55,7 @@ const ChatScreen = () => {
   );
 };
 
-export default ChatScreen;
+export default ChatAIScreen;
 
 const styles = StyleSheet.create({
   chatContainer: {

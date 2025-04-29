@@ -8,26 +8,21 @@ import RegisterScreen from './app/screens/Register';
 
 // import { LogBox } from 'react-native';
 
+import ChatScreen from './app/screens/Chat';
 if (typeof globalThis.setImmediate === undefined) {
   globalThis.setImmediate = setTimeout as any;
 }
-
-// LogBox.ignoreLogs([
-//   /^AsyncStorage has been extracted from react-native/,
-//   /^Setting a timer for a long period of time/
-// ]);
-
-//https://reactnavigation.org/docs/hello-react-navigation
 const Stack = createNativeStackNavigator();
-
-//https://callstack.github.io/react-native-paper/getting-started.html
 const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: 'tomato',
+    primary: 'white',
     accent: 'yellow',
   },
+  font: {
+    regular: 'Roboto',
+  }
 };
 
 function App() {
@@ -38,6 +33,11 @@ function App() {
           <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
           <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
           <Stack.Screen name="Main" component={MainNavigator} options={{ headerShown: false }} />
+          <Stack.Screen
+            name="Chat"
+            component={(props: any) => <ChatScreen {...props} />}
+            options={{ headerShown: false }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
