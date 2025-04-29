@@ -83,17 +83,6 @@ const MainNavigator = () => (
                 ),
             }}
         />
-        <Tab.Screen
-            name="Chat"
-            component={({ route, navigation }: { route: any; navigation: import('@react-navigation/native').NavigationProp<any> }) => <ChatScreen route={route} navigation={navigation} />}
-            options={{
-                headerShown: false,
-                tabBarLabel: 'Chat',
-                tabBarIcon: ({ color }) => (
-                    <MaterialIcons name="chat" size={24} color="grey" />
-                ),
-            }}
-        />
     </Tab.Navigator>
 );
 
