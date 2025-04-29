@@ -1,39 +1,28 @@
 import React, { useState } from "react";
-import { initializeApp } from "firebase/app";
-import firebaseConfig from "../../firebase-config.json";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {
-    getAuth,
-    initializeAuth,
-    onAuthStateChanged,
-    signInWithEmailAndPassword,
-    // @ts-ignore
-    getReactNativePersistence
-} from 'firebase/auth';
-//@ts-ignore
-import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
-import { StyleProp, View, ViewStyle } from "react-native";
-import { Button, TextInput } from "react-native-paper";
-
+import { StyleProp, ViewStyle, ScrollView, TouchableOpacity, StyleSheet, Text } from "react-native";
+import { TextInput } from "react-native-paper";
 
 const LoginScreen = ({ navigation }: any) => {
-
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [hidePassword, setHidePassword] = useState(true);
 
     const inputStyle: StyleProp<ViewStyle> = {
         alignSelf: 'stretch',
-        margin: 20
+        margin: 20,
     };
 
     const signIn = async () => {
-        navigation.navigate('Main');
-    }
+        console.log("Mock authentication successful");
+        navigation.navigate('Main'); 
+    };
+
+    const signup = async () => {
+        navigation.navigate('Register');
+    };
 
     return (
-        <View style={{ alignSelf: 'stretch', display: 'flex', flexDirection: 'column', height: '50%', marginTop: '30%' }}>
+        <ScrollView style={styles.scrollView}>
             <TextInput
                 mode="outlined"
                 style={inputStyle}
@@ -50,11 +39,52 @@ const LoginScreen = ({ navigation }: any) => {
                 onChangeText={(password) => setPassword(password)}
                 right={<TextInput.Icon icon="eye" onPress={() => setHidePassword(!hidePassword)} />}
             />
-            <Button mode="outlined" style={{ alignSelf: 'center', width: '50%' }}
+            <TouchableOpacity
+                style={styles.loginButton}
                 onPress={signIn}
-            >Login</Button>
-        </View>
+            >
+                <Text style={styles.buttonTextlogin}>Login</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.registerButton}
+                onPress={signup}
+            >
+                <Text style={styles.buttonTextregister}>Register</Text>
+            </TouchableOpacity>
+        </ScrollView>
     );
-}
+};
+
+const styles = StyleSheet.create({
+    scrollView: {
+        alignSelf: 'stretch',
+        display: 'flex',
+        flexDirection: 'column',
+        height: '50%',
+        marginTop: '30%',
+    },
+    registerButton: {
+        backgroundColor: '#825C96',
+        padding: 10,
+        borderRadius: 5,
+        alignItems: 'center',
+        margin: 10,
+    },
+    buttonTextregister: {
+        color: '#FFFFFF',
+        fontSize: 16,
+    },
+    loginButton: {
+        backgroundColor: '#825C96',
+        padding: 10,
+        borderRadius: 5,
+        alignItems: 'center',
+        margin: 10,
+    },
+    buttonTextlogin: {
+        color: '#FFFFFF',
+        fontSize: 16,
+    },
+});
 
 export default LoginScreen;
