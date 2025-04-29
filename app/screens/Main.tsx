@@ -1,12 +1,8 @@
 import React from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-<<<<<<< HEAD
-import ChatScreen from "./ChatAI";
-=======
 import { createStackNavigator } from '@react-navigation/stack'; // Import Stack Navigator
 import { NavigationContainer } from "@react-navigation/native";
 import ChatAIScreen from "./ChatAI";
->>>>>>> d53da5150ff058237322a8e2a55c0fb00cf819ab
 import SearchScreen from "./Search";
 import FeedScreen from "./Feed";
 import HomeScreen from "./Home";
