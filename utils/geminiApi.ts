@@ -1,5 +1,5 @@
 export async function fetchGeminiResponse(prompt: any) {
-  const API_KEY = "AIzaSyAXaLllif_4bHHF21oUpX8M5btwMHYPj2A"; 
+  const key = geminiconfig.api_key;
 
   const body = {
     contents: [
@@ -21,7 +21,7 @@ export async function fetchGeminiResponse(prompt: any) {
     });
 
     const data = await response.json();
-    return data.contents[0].parts[0].text.trim();
+    return data.candidates[0].content.parts[0].text.trim();
   } catch (error) {
     console.error("Eroare Gemini:", error);
     return "A apărut o eroare.";
