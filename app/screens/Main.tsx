@@ -16,14 +16,14 @@ const Tab = createBottomTabNavigator({
         Feed: FeedScreen,
         ChatAI: ChatAIScreen,
         Search: SearchScreen,
-        Account: AccountScreen, 
+        Account: AccountScreen,
         Chat: ChatScreen
     }
 });
 const MainNavigator = () => (
     <Tab.Navigator
         screenOptions={{
-            tabBarActiveTintColor: "#825C96", 
+            tabBarActiveTintColor: "#825C96",
             tabBarInactiveTintColor: "grey",
         }}
     >
@@ -79,16 +79,6 @@ const MainNavigator = () => (
                 tabBarLabel: 'Account',
                 tabBarIcon: ({ color }) => (
                     <MaterialIcons name="account-circle" size={24} color="grey" />
-                ),
-            }}
-        />
-        <Tab.Screen
-            name="Chat"
-            component={ChatScreen}
-            options={{  headerShown: false,
-                tabBarLabel: 'Chat',
-                tabBarIcon: ({ color }) => (
-                    <MaterialIcons name="chat" size={24} color="grey" />
                 ),
             }}
         />

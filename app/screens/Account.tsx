@@ -31,14 +31,13 @@ const AccountScreen = () => {
       <Text style={styles.name}>John Doe</Text>
       <Text style={styles.email}>john.doe@example.com</Text>
 
-      <Button mode="outlined" textColor="#5A189A" onPress={() => alert("Edit Profile")}>
+      <Button mode="outlined" textColor="#825C96" style={{ margin: 20 }} onPress={() => alert("Edit Profile")}>
         Edit Profile
       </Button>
 
       <Button
         mode="outlined"
         style={{ marginTop: 20 }}
-        buttonColor="#B191E3"
         onPress={pickPDF}
       >
         Upload PDF

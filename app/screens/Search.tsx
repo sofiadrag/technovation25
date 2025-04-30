@@ -154,7 +154,19 @@ export default function SearchScreen({ navigation }: { navigation: NavigationPro
                 </Button>
                 <Button
                   mode="outlined"
-                  onPress={() => navigateToChat(item)}
+                  onPress={async () => {
+                    const chatUsers = JSON.parse(await AsyncStorage.getItem("chatUsers") || "[]") || [];
+                    const userExists = chatUsers.some((chatUser: any) => chatUser === item.id);
+
+                    // Add the user to the chatUsers list if not already present
+                    if (!userExists) {
+                      chatUsers.push(item.id);
+                      await AsyncStorage.setItem("chatUsers", JSON.stringify(chatUsers));
+                    }
+
+                    // Navigate to the Chat screen
+                    navigation.navigate("Chat", { id: item.id });
+                  }}
                   style={styles.SmallButton}
                   labelStyle={styles.ButtonLabel}
                 >

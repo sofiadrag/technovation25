@@ -14,7 +14,7 @@ const LoginScreen = ({ navigation }: any) => {
 
     const signIn = async () => {
         console.log("Mock authentication successful");
-        navigation.navigate('Main'); 
+        navigation.navigate('Main');
     };
 
     const signup = async () => {
@@ -29,6 +29,7 @@ const LoginScreen = ({ navigation }: any) => {
                 label="Email"
                 value={email}
                 onChangeText={(email: string) => setEmail(email)}
+
             />
             <TextInput
                 mode="outlined"
@@ -37,7 +38,13 @@ const LoginScreen = ({ navigation }: any) => {
                 secureTextEntry={hidePassword}
                 value={password}
                 onChangeText={(password) => setPassword(password)}
-                right={<TextInput.Icon icon="eye" onPress={() => setHidePassword(!hidePassword)} />}
+                right={
+                    <TextInput.Icon
+                        icon={hidePassword ? "eye-off" : "eye"}
+                        onPress={() => setHidePassword(!hidePassword)}
+                    />
+                }
+
             />
             <TouchableOpacity
                 style={styles.loginButton}
