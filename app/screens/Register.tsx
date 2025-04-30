@@ -148,16 +148,16 @@ const RegisterScreen = ({ navigation }: any) => {
                 mode="outlined"
                 style={inputStyle}
                 label="Ex: Communication, math, design, etc."
-                value={firstname}
-                onChangeText={(skillsstrengths: string) => setfirstname(skillsstrengths)}
+                value={skillsstrengths}
+                onChangeText={(skillsstrengths: string) => setSkillsStrengths(skillsstrengths)}
             />
             <Text style={{ textAlign: 'center', fontSize: 18, marginTop: '6%', marginBottom: '6%' }}>What motivates you most when choosing a career?</Text>
             <TextInput
                 mode="outlined"
                 style={inputStyle}
                 label="Ex: Money, helping others, creativity, etc."
-                value={firstname}
-                onChangeText={(motivations: string) => setfirstname(motivations)}
+                value={motivations}
+                onChangeText={(motivations: string) => setMotivations(motivations)}
             />
             <TouchableOpacity
                 style={styles.purpleButton}
