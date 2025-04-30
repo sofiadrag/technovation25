@@ -4,7 +4,6 @@ import { Paragraph } from "react-native-paper";
 import MainLayout from "./Layout";
 import { fetchGeminiResponse } from "../../utils/geminiApi"; 
 
-
 const ChatAIScreen = () => {
   const [messages, setMessages] = useState([{ sender: "user", text: "" }]);
   const [input, setInput] = useState("");
@@ -49,7 +48,7 @@ const ChatAIScreen = () => {
           onChangeText={setInput}
           placeholder="Pune o intrebare"
         />
-        <Button title="Trimite" onPress={sendMessage} />
+        <Button title="Trimite" onPress={sendMessage}/>
       </View>
     </MainLayout>
   );

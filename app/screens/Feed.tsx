@@ -58,8 +58,7 @@ const FeedScreen = () => {
 
   return (
     <ScrollView
-    style={{ backgroundColor: 'F5F938' }}
-    contentContainerStyle={[styles.container, { flexGrow: 1 }]}
+      contentContainerStyle={[styles.container, { flexGrow: 1 }]}
     >
       <Text style={styles.title}>My Feed</Text>
       {opportunities.map((opp) => (
@@ -114,7 +113,6 @@ const styles = StyleSheet.create({
     paddingTop: 75,
     paddingHorizontal: 10,
     alignItems: 'center',
-    backgroundColor: 'F5F938',
   },
   title: {
     fontSize: 24,

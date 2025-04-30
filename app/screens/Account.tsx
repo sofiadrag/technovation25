@@ -30,16 +30,18 @@ const AccountScreen = () => {
       />
       <Text style={styles.name}>John Doe</Text>
       <Text style={styles.email}>john.doe@example.com</Text>
+
       <Button mode="outlined" textColor="#5A189A" onPress={() => alert("Edit Profile")}>
         Edit Profile
       </Button>
+
       <Button
-        mode="contained"
+        mode="outlined"
         style={{ marginTop: 20 }}
         buttonColor="#B191E3"
         onPress={pickPDF}
       >
-        Upload C.V.
+        Upload PDF
       </Button>
 
       {pdfUri && (
@@ -51,8 +53,6 @@ const AccountScreen = () => {
             useWebKit={true}
             javaScriptEnabled={true}
           />
-
-
         </View>
       )}
     </ScrollView>
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     alignItems: "center",
-    backgroundColor: "F5F938",
+    backgroundColor: "#F5F5F5",
   },
   title: {
     fontSize: 24,

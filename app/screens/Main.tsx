@@ -1,7 +1,5 @@
 import React from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack'; // Import Stack Navigator
-import { NavigationContainer } from "@react-navigation/native";
 import ChatAIScreen from "./ChatAI";
 import SearchScreen from "./Search";
 import FeedScreen from "./Feed";
@@ -19,6 +17,7 @@ const Tab = createBottomTabNavigator({
         ChatAI: ChatAIScreen,
         Search: SearchScreen,
         Account: AccountScreen, 
+        Chat: ChatScreen
     }
 });
 const MainNavigator = () => (
@@ -80,6 +79,16 @@ const MainNavigator = () => (
                 tabBarLabel: 'Account',
                 tabBarIcon: ({ color }) => (
                     <MaterialIcons name="account-circle" size={24} color="grey" />
+                ),
+            }}
+        />
+        <Tab.Screen
+            name="Chat"
+            component={ChatScreen}
+            options={{  headerShown: false,
+                tabBarLabel: 'Chat',
+                tabBarIcon: ({ color }) => (
+                    <MaterialIcons name="chat" size={24} color="grey" />
                 ),
             }}
         />
