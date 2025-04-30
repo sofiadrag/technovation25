@@ -12,6 +12,7 @@ import {
     TouchableWithoutFeedback,
     Image,
     Dimensions,
+    Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Avatar, Card } from 'react-native-paper';
@@ -32,7 +33,7 @@ type ChatScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Chat'>;
 const ChatScreen = () => {
     const route = useRoute()
     const navigation = useNavigation()
-    const [allMessages, setAllMessages] = useState<{ [key: string]: { id: string; text: string }[] }>({});
+    const [allMessages, setAllMessages] = useState<{ [key: string]: { id: string; text: string; pdfUri?: string | null }[] }>({});
     const [input, setInput] = useState('');
     const [user, setUser] = useState<any | undefined>();
     const [userMessages, setUserMessages] = useState<any[]>([]);
@@ -58,8 +59,12 @@ const ChatScreen = () => {
     }, [(route.params as any)?.id]);
 
     const sendMessage = () => {
-        if (input.trim()) {
-            const newMessage = { id: Date.now().toString(), text: input };
+        if (input.trim() || pdfUri) {
+            const newMessage = {
+                id: Date.now().toString(),
+                text: input || "PDF Attached",
+                pdfUri: pdfUri || null, // Include the PDF URI if available
+            };
             const updatedMessages = {
                 ...allMessages,
                 [(route.params as any)?.id]: [...(userMessages || []), newMessage],
@@ -67,6 +72,7 @@ const ChatScreen = () => {
             setAllMessages(updatedMessages);
             setUserMessages([...(userMessages || []), newMessage]);
             setInput('');
+            setPdfUri(null); // Clear the PDF URI after sending
         }
     };
 
@@ -89,15 +95,7 @@ const ChatScreen = () => {
     const [pdfUri, setPdfUri] = useState<string | null>(null);
 
     const pickPDF = async () => {
-        const result = await DocumentPicker.getDocumentAsync({
-            type: "application/pdf",
-            copyToCacheDirectory: true,
-        });
-
-        if (!result.canceled && result.assets && result.assets.length > 0) {
-            const uri = result.assets[0].uri;
-            setPdfUri(uri);
-        }
+        Alert.alert("Attachments", "PDF added successfully!", );
     };
 
     return (
@@ -144,17 +142,7 @@ const ChatScreen = () => {
                         >
                             <Icon name="attach-file" size={24} color="#825C96" />
                         </TouchableOpacity>
-                        {pdfUri && (
-                            <View style={styles.webViewContainer}>
-                                <WebView
-                                    source={{ uri: pdfUri }}
-                                    style={styles.webView}
-                                    originWhitelist={['*']}
-                                    useWebKit={true}
-                                    javaScriptEnabled={true}
-                                />
-                            </View>
-                        )}
+
                         <TextInput
                             style={styles.textInput}
                             placeholder="Type a message..."
@@ -162,13 +150,14 @@ const ChatScreen = () => {
                             value={input}
                             onChangeText={setInput}
                         />
+
                         <TouchableOpacity
                             style={[
                                 styles.sendButton,
-                                input.trim() === '' && styles.disabledSendButton,
+                                input.trim() === '' && !pdfUri && styles.disabledSendButton,
                             ]}
                             onPress={sendMessage}
-                            disabled={input.trim() === ''}
+                            disabled={input.trim() === '' && !pdfUri}
                         >
                             <Text style={styles.sendButtonText}>Send</Text>
                         </TouchableOpacity>
@@ -277,6 +266,16 @@ const styles = StyleSheet.create({
     },
     webView: {
         flex: 1,
+    },
+    pdfThumbnailContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginRight: 10,
+    },
+    pdfThumbnail: {
+        width: 40,
+        height: 40,
+        marginRight: 5,
     },
 });
 
