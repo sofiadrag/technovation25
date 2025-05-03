@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
   View,
   TextInput,
@@ -41,7 +42,7 @@ const ChatAIScreen = () => {
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.innerContainer}>
-          <ScrollView
+          {/* <ScrollView
             style={styles.chatContainer}
             contentContainerStyle={styles.messagesContainer}
           >
@@ -57,8 +58,26 @@ const ChatAIScreen = () => {
               </View>
             ))}
             {loading && <ActivityIndicator size="small" color="#825C96" />}
+          </ScrollView> */}
+          <ScrollView
+            style={styles.chatContainer}
+            contentContainerStyle={[styles.messagesContainer, { flexGrow: 1 }]}
+            keyboardShouldPersistTaps="handled"
+          >
+            {messages.map((msg, index) => (
+              <View
+                key={index}
+                style={[
+                  styles.message,
+                  msg.sender === "user" ? styles.userMessage : styles.aiMessage,
+                ]}
+              >
+                <Text style={styles.messageText}>{msg.text}</Text>
+              </View>
+            ))}
+            {loading && <ActivityIndicator size="small" color="#825C96" />}
           </ScrollView>
-
+          
           <View style={styles.inputContainer}>
             <TextInput
               style={styles.input}

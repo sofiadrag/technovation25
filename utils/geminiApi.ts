@@ -1,14 +1,13 @@
 import  geminiconfig  from '../geminiconfig.json'
 export async function fetchGeminiResponse(prompt: any) {
   const key = geminiconfig.api_key;
+  const systemInstruction = 'Respond concisely in an academic style. Do not use special characters such as , #, or emojis unles needed. Write clear paragraphs without repetition. Write each new idea in a new paragraph. Write the responses in the same language as the question.'
 
   const body = {
     contents: [
       {
         parts: [
-          { text: "Respond concisely in an academic style. Do not use special characters such as , #, or emojis unles needed. Write clear paragraphs without repetition. Write each new idea in a new paragraph.\n\nQuestion:" + prompt,
-
-          } 
+          { text: systemInstruction + "\n\nQuestion:" + prompt }
         ]
       }
     ]
