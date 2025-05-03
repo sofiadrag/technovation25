@@ -6,7 +6,9 @@ export async function fetchGeminiResponse(prompt: any) {
     contents: [
       {
         parts: [
-          { text: prompt } 
+          { text: "Respond concisely in an academic style. Do not use special characters such as , #, or emojis unles needed. Write clear paragraphs without repetition. Write each new idea in a new paragraph.\n\nQuestion:" + prompt,
+
+          } 
         ]
       }
     ]
