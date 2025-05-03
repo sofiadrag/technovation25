@@ -1,3 +1,4 @@
+import  geminiconfig  from '../geminiconfig.json'
 export async function fetchGeminiResponse(prompt: any) {
   const key = geminiconfig.api_key;
 
