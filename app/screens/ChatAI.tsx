@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, TextInput, Button, ScrollView, StyleSheet, ActivityIndicator, Text } from "react-native";
 import { Paragraph } from "react-native-paper";
-import MainLayout from "./Layout";
+//import MainLayout from "./Layout";
 import { fetchGeminiResponse } from "../../utils/geminiApi"; 
 
 const ChatAIScreen = () => {
@@ -25,7 +25,7 @@ const ChatAIScreen = () => {
   };
 
   return (
-    <MainLayout>
+    <View>
       <ScrollView style={styles.chatContainer}>
         {messages.map((msg, index) => (
           <View
@@ -48,9 +48,10 @@ const ChatAIScreen = () => {
           onChangeText={setInput}
           placeholder="Pune o intrebare"
         />
-        <Button title="Trimite" onPress={sendMessage}/>
+        <Button title="Trimite" onPress={sendMessage}>
+        </Button>
       </View>
-    </MainLayout>
+    </View>
   );
 };
 

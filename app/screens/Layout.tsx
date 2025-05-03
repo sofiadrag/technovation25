@@ -14,10 +14,7 @@ const MainLayout = ({ children }: any) => {
     return (
         user ? (
             <SafeAreaView>
-                <Appbar.Header>
-                    <Appbar.Content title={`Welcome, ${user.displayName || user.email}`} />
-                    <Appbar.Action icon="logout" onPress={async () => { navigation.navigate('Login') }} />
-                </Appbar.Header>
+                
                 <View style={{ alignSelf: 'stretch', backgroundColor: '#FFFFFF', height: '80%', display: 'flex', flexDirection: 'column' }}>
                 </View>
             </SafeAreaView>
