@@ -18,6 +18,60 @@
     "link": "https://example.com/cybersecurity-bootcamp"
   },
   {
+    "id": "1",
+    "label": "Frontend Internship",
+    "contact": {
+      "firstName": "Michael",
+      "lastName": "Brown",
+      "email": "michael.brown@example.com",
+      "phone": "555-987-6543"
+    },
+    "location": {
+      "address": "456 Developer Lane",
+      "city": "Austin",
+      "country": "USA"
+    },
+    "photo": "https://randomuser.me/api/portraits/men/10.jpg",
+    "description": "Build beautiful UIs with React and TypeScript.",
+    "link": "https://example.com/frontend"
+  },
+  {
+    "id": "2",
+    "label": "AI Bootcamp",
+    "contact": {
+      "firstName": "Sophia",
+      "lastName": "Davis",
+      "email": "sophia.davis@example.com",
+      "phone": "555-876-5432"
+    },
+    "location": {
+      "address": "789 AI Street",
+      "city": "Palo Alto",
+      "country": "USA"
+    },
+    "photo": "https://randomuser.me/api/portraits/women/11.jpg",
+    "description": "Master machine learning in 12 weeks.",
+    "link": "https://example.com/ai"
+  },
+  {
+    "id": "3",
+    "label": "Girls Who Code Summer Program",
+    "contact": {
+      "firstName": "Emma",
+      "lastName": "Wilson",
+      "email": "emma.wilson@example.com",
+      "phone": "555-765-4321"
+    },
+    "location": {
+      "address": "123 Coding Avenue",
+      "city": "New York",
+      "country": "USA"
+    },
+    "photo": "https://randomuser.me/api/portraits/women/12.jpg",
+    "description": "Become a GWC Scholar to learn Game Design and Data Science.",
+    "link": "https://example.com/gwc"
+  },
+  {
     "id": "5aecdcb2-334d-49e7-8675-5b76730df2c3",
     "label": "Robotics Innovation Program",
     "contact": {

@@ -51,15 +51,14 @@ const opportunities: Opportunity[] = [
   },
 ];
 
-const FeedScreen = () => {
+const FeedScreen = ({ navigation }: any) => {
   const handleOpenLink = (url: string) => {
     Linking.openURL(url);
   };
 
   return (
     <ScrollView
-    style={{ backgroundColor: 'F5F938' }}
-    contentContainerStyle={[styles.container, { flexGrow: 1 }]}
+      contentContainerStyle={[styles.container, { flexGrow: 1 }]}
     >
       <Text style={styles.title}>My Feed</Text>
       {opportunities.map((opp) => (
@@ -96,9 +95,21 @@ const FeedScreen = () => {
             <Button
               mode="outlined"
               textColor="white"
-              onPress={() => alert('Make a new ChatScreen')}
+              onPress={async () => {
+                const storedChatUsers = await AsyncStorage.getItem("chatUsers");
+                const parsedChatUsers = JSON.parse(storedChatUsers || "[]");
+
+                // Add the user to the chatUsers list if not already present
+                if (!parsedChatUsers.includes(opp.id)) {
+                  const updatedChatUsers = [...parsedChatUsers, opp.id];
+                  await AsyncStorage.setItem("chatUsers", JSON.stringify(updatedChatUsers));
+                }
+
+                // Navigate to the Chat screen
+                navigation.navigate("Chat", { id: opp.id });
+              }}
               style={styles.chatButton}
-              buttonColor='#825C96'
+              buttonColor="#825C96"
             >
               Chat
             </Button>
@@ -114,7 +125,6 @@ const styles = StyleSheet.create({
     paddingTop: 75,
     paddingHorizontal: 10,
     alignItems: 'center',
-    backgroundColor: 'F5F938',
   },
   title: {
     fontSize: 24,

@@ -1,7 +1,5 @@
 import React from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack'; // Import Stack Navigator
-import { NavigationContainer } from "@react-navigation/native";
 import ChatAIScreen from "./ChatAI";
 import SearchScreen from "./Search";
 import FeedScreen from "./Feed";
@@ -18,13 +16,14 @@ const Tab = createBottomTabNavigator({
         Feed: FeedScreen,
         ChatAI: ChatAIScreen,
         Search: SearchScreen,
-        Account: AccountScreen, 
+        Account: AccountScreen,
+        Chat: ChatScreen
     }
 });
 const MainNavigator = () => (
     <Tab.Navigator
         screenOptions={{
-            tabBarActiveTintColor: "#825C96", 
+            tabBarActiveTintColor: "#825C96",
             tabBarInactiveTintColor: "grey",
         }}
     >

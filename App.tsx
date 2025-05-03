@@ -6,8 +6,6 @@ import LoginScreen from './app/screens/Login';
 import MainNavigator from './app/screens/Main';
 import RegisterScreen from './app/screens/Register';
 
-// import { LogBox } from 'react-native';
-
 import ChatScreen from './app/screens/Chat';
 if (typeof globalThis.setImmediate === undefined) {
   globalThis.setImmediate = setTimeout as any;
@@ -17,7 +15,7 @@ const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: 'white',
+    primary: '#825C96',
     accent: 'yellow',
   },
   font: {

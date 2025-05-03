@@ -19,14 +19,26 @@ export default function HomeScreen({ navigation, route }: { navigation: HomeScre
     const [activeChats, setActiveChats] = useState<{ userName: string; avatar?: string, id: string }[]>([]);
 
     useEffect(() => {
-        AsyncStorage.getItem("chatUsers").then((chatUsers) => {
-            const parsedChatUsers = JSON.parse(chatUsers || "[]") || [];
-            setActiveChats(Data
-                .filter((user) => parsedChatUsers.some((chatUser: string) => chatUser === user.id))
-                .map(user => ({ id: user.id, userName: user.contact.firstName + ' ' + user.contact.lastName, avatar: user.photo }))
-            ); 
-        });
-    }, [route.params?.id]);
+        const fetchActiveChats = async () => {
+            const storedChatUsers = await AsyncStorage.getItem("chatUsers");
+            const parsedChatUsers = JSON.parse(storedChatUsers || "[]");
+
+            // Filter and map users from the data
+            setActiveChats(
+                Data.filter((user) => parsedChatUsers.includes(user.id)).map((user) => ({
+                    id: user.id,
+                    userName: `${user.contact.firstName} ${user.contact.lastName}`,
+                    avatar: user.photo,
+                }))
+            );
+        };
+
+        fetchActiveChats();
+
+        // Listen for changes in AsyncStorage
+        const unsubscribe = navigation.addListener("focus", fetchActiveChats);
+        return unsubscribe;
+    }, [navigation]);
 
     const navigateToChat = (user: { userName?: string; avatar?: string | undefined; id: any; }) => {
         navigation.navigate("Chat", { id: user.id });

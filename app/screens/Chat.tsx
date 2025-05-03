@@ -10,14 +10,18 @@ import {
     Platform,
     Keyboard,
     TouchableWithoutFeedback,
+    Image,
+    Dimensions,
+    Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Avatar, Card } from 'react-native-paper';
 import Data from '../data/mock_api.json';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { RouteProp } from '@react-navigation/native';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-
+import * as DocumentPicker from "expo-document-picker";
+import { WebView } from "react-native-webview";
 type RootStackParamList = {
     Chat: { id: string };
     Main: undefined;
@@ -26,41 +30,72 @@ type RootStackParamList = {
 type ChatScreenRouteProp = RouteProp<RootStackParamList, 'Chat'>;
 type ChatScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Chat'>;
 
-const ChatScreen = ({ route, navigation }: { route: ChatScreenRouteProp; navigation: ChatScreenNavigationProp }) => {
-    const { id } = route.params;
-    const user = Data.find((user) => user.id === id);
-    const [allMessages, setAllMessages] = useState<{ [key: string]: { id: string; text: string }[] }>({});
+const ChatScreen = () => {
+    const route = useRoute()
+    const navigation = useNavigation()
+    const [allMessages, setAllMessages] = useState<{ [key: string]: { id: string; text: string; pdfUri?: string | null }[] }>({});
     const [input, setInput] = useState('');
+    const [user, setUser] = useState<any | undefined>();
+    const [userMessages, setUserMessages] = useState<any[]>([]);
 
-    const userMessages = allMessages[id] || [];
     useEffect(() => {
+        if (!(route.params as any)?.id) return;
+        setUser(Data.find((user) => user.id === (route.params as any)?.id));
+        console.log("id", (route.params as any)?.id);
+
         const fetchMessages = async () => {
             const storedMessages = await AsyncStorage.getItem('messages');
             if (storedMessages) {
-                setAllMessages(JSON.parse(storedMessages));
+                const parsedMessages = JSON.parse(storedMessages);
+                setAllMessages(parsedMessages);
+                setUserMessages(parsedMessages[(route.params as any)?.id] || []); // Ensure userMessages is an array
+            } else {
+                setAllMessages({});
+                setUserMessages([]);
             }
         };
 
         fetchMessages();
-    }, [route.params?.id]);
+    }, [(route.params as any)?.id]);
 
     const sendMessage = () => {
-        if (input.trim()) {
-            const newMessage = { id: Date.now().toString(), text: input };
-            const updatedMessages = { ...allMessages, [id]: [...userMessages, newMessage] };
+        if (input.trim() || pdfUri) {
+            const newMessage = {
+                id: Date.now().toString(),
+                text: input || "PDF Attached",
+                pdfUri: pdfUri || null, // Include the PDF URI if available
+            };
+            const updatedMessages = {
+                ...allMessages,
+                [(route.params as any)?.id]: [...(userMessages || []), newMessage],
+            };
             setAllMessages(updatedMessages);
+            setUserMessages([...(userMessages || []), newMessage]);
             setInput('');
+            setPdfUri(null); // Clear the PDF URI after sending
         }
     };
 
     const onBackButtonPress = async () => {
         await AsyncStorage.setItem('messages', JSON.stringify(allMessages));
-        navigation.navigate('Main');
+        navigation.navigate('Main' as never);
     };
 
     const wipeAllMessages = async () => {
-        await AsyncStorage.removeItem('messages');
-        setAllMessages({});
+        try {
+            await AsyncStorage.removeItem('messages');
+            setAllMessages({});
+            setUserMessages([]);
+            console.log("All messages wiped successfully!");
+        } catch (error) {
+            console.error("Error wiping messages:", error);
+        }
+    };
+
+    const [pdfUri, setPdfUri] = useState<string | null>(null);
+
+    const pickPDF = async () => {
+        Alert.alert("Attachments", "PDF added successfully!", );
     };
 
     return (
@@ -71,19 +106,19 @@ const ChatScreen = ({ route, navigation }: { route: ChatScreenRouteProp; navigat
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.innerContainer}>
                     <Card>
-                    <View style={styles.header}>
-                        <Avatar.Image
-                            size={50}
-                            source={{
-                                uri: user?.photo,
-                            }}
-                            style={[styles.avatar, { backgroundColor: "#FFFFFF" }]}
-                        />
-                        <Text style={styles.headerText}>{user?.contact.firstName} {user?.contact.lastName}</Text>
-                        <TouchableOpacity onPress={onBackButtonPress} style={styles.backButtonContainer}>
-                            <Text style={styles.backButtonText}>Back</Text>
-                        </TouchableOpacity>
-                    </View>
+                        <View style={styles.header}>
+                            <Avatar.Image
+                                size={50}
+                                source={{
+                                    uri: user?.photo,
+                                }}
+                                style={[styles.avatar, { backgroundColor: "#FFFFFF" }]}
+                            />
+                            <Text style={styles.headerText}>{user?.contact.firstName} {user?.contact.lastName}</Text>
+                            <TouchableOpacity onPress={onBackButtonPress} style={styles.backButtonContainer}>
+                                <Text style={styles.backButtonText}>Back</Text>
+                            </TouchableOpacity>
+                        </View>
                     </Card>
                     <View>
                         <TouchableOpacity onPress={wipeAllMessages}>
@@ -101,23 +136,28 @@ const ChatScreen = ({ route, navigation }: { route: ChatScreenRouteProp; navigat
                         contentContainerStyle={styles.messagesContainer}
                     />
                     <View style={styles.inputContainer}>
-                        <TouchableOpacity style={styles.attachmentsButton} onPress={() => console.log('Attachments pressed')}>
+                        <TouchableOpacity
+                            style={styles.attachmentsButton}
+                            onPress={pickPDF}
+                        >
                             <Icon name="attach-file" size={24} color="#825C96" />
                         </TouchableOpacity>
+
                         <TextInput
                             style={styles.textInput}
                             placeholder="Type a message..."
-                            placeholderTextColor="#825C96" 
+                            placeholderTextColor="#825C96"
                             value={input}
                             onChangeText={setInput}
                         />
+
                         <TouchableOpacity
                             style={[
                                 styles.sendButton,
-                                input.trim() === '' && styles.disabledSendButton,
+                                input.trim() === '' && !pdfUri && styles.disabledSendButton,
                             ]}
                             onPress={sendMessage}
-                            disabled={input.trim() === ''}
+                            disabled={input.trim() === '' && !pdfUri}
                         >
                             <Text style={styles.sendButtonText}>Send</Text>
                         </TouchableOpacity>
@@ -148,7 +188,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         padding: 12,
         marginLeft: 10,
-        marginTop: 30, 
+        marginTop: 30,
     },
     backButtonText: {
         color: '#FFF',
@@ -218,6 +258,24 @@ const styles = StyleSheet.create({
     },
     Avatar: {
         marginRight: 20,
+    },
+    webViewContainer: {
+        width: Dimensions.get("window").width - 20,
+        height: 400,
+        marginTop: 20,
+    },
+    webView: {
+        flex: 1,
+    },
+    pdfThumbnailContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginRight: 10,
+    },
+    pdfThumbnail: {
+        width: 40,
+        height: 40,
+        marginRight: 5,
     },
 });
 

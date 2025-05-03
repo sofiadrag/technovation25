@@ -1,8 +1,18 @@
 import React, { useState } from "react";
-import { View, TextInput, Button, ScrollView, StyleSheet, ActivityIndicator, Text } from "react-native";
-import { Paragraph } from "react-native-paper";
-//import MainLayout from "./Layout";
-import { fetchGeminiResponse } from "../../utils/geminiApi"; 
+import {
+  View,
+  TextInput,
+  Button,
+  ScrollView,
+  StyleSheet,
+  ActivityIndicator,
+  Text,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
+import { fetchGeminiResponse } from "../../utils/geminiApi";
 
 const ChatAIScreen = () => {
   const [messages, setMessages] = useState([{ sender: "user", text: "" }]);
@@ -17,7 +27,7 @@ const ChatAIScreen = () => {
     setInput("");
     setLoading(true);
 
-    const aiText = await fetchGeminiResponse(input); 
+    const aiText = await fetchGeminiResponse(input);
     const aiMessage = { sender: "ai", text: aiText };
 
     setMessages((prev) => [...prev, aiMessage]);
@@ -25,42 +35,63 @@ const ChatAIScreen = () => {
   };
 
   return (
-    <View>
-      <ScrollView style={styles.chatContainer}>
-        {messages.map((msg, index) => (
-          <View
-            key={index}
-            style={[
-              styles.message,
-              msg.sender === "user" ? styles.userMessage : styles.aiMessage,
-            ]}
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.innerContainer}>
+          <ScrollView
+            style={styles.chatContainer}
+            contentContainerStyle={styles.messagesContainer}
           >
-            <Text style={styles.messageText}>{msg.text}</Text>
-          </View>
-        ))}
-        {loading && <ActivityIndicator size="small" color="#0000ff" />}
-      </ScrollView>
+            {messages.map((msg, index) => (
+              <View
+                key={index}
+                style={[
+                  styles.message,
+                  msg.sender === "user" ? styles.userMessage : styles.aiMessage,
+                ]}
+              >
+                <Text style={styles.messageText}>{msg.text}</Text>
+              </View>
+            ))}
+            {loading && <ActivityIndicator size="small" color="#825C96" />}
+          </ScrollView>
 
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          value={input}
-          onChangeText={setInput}
-          placeholder="Pune o intrebare"
-        />
-        <Button title="Trimite" onPress={sendMessage}>
-        </Button>
-      </View>
-    </View>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              value={input}
+              onChangeText={setInput}
+              placeholder="Ask a question"
+              placeholderTextColor="#825C96"
+            />
+            <Button title="Send" color='#825C96' onPress={sendMessage} />
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
 
 export default ChatAIScreen;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#F5F5F5",
+  },
+  innerContainer: {
+    flex: 1,
+  },
   chatContainer: {
     flex: 1,
-    marginBottom: 10,
+  },
+  messagesContainer: {
+    padding: 10,
+    marginTop: 40,
+    alignContent: "flex-start",
   },
   message: {
     padding: 10,
@@ -69,8 +100,8 @@ const styles = StyleSheet.create({
     maxWidth: "80%",
   },
   userMessage: {
-    alignSelf: "flex-end",
-    backgroundColor: "#d1e7dd",
+    alignSelf: "flex-start",
+    backgroundColor: "#DBCCF1",
   },
   aiMessage: {
     alignSelf: "flex-start",
@@ -82,14 +113,17 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 10,
+    padding: 10,
+    borderTopWidth: 1,
+    borderTopColor: "#CCC",
+    backgroundColor: "#FFF",
   },
   input: {
     flex: 1,
-    borderColor: "#ccc",
+    borderColor: "#CCC",
     borderWidth: 1,
     borderRadius: 8,
     padding: 10,
-    marginRight: 8,
-  },
+    marginRight: 8,
+  },
 });
