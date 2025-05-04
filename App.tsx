@@ -8,6 +8,7 @@ import OnboardingScreen from './app/screens/Onboarding';
 import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ChatScreen from './app/screens/Chat';
+
 if (typeof globalThis.setImmediate === undefined) {
   globalThis.setImmediate = setTimeout as any;
 }

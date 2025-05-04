@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { initializeApp } from "firebase/app";
-import firebaseConfig from "../../firebase-config.json";
+// import firebaseConfig from "../../firebase-config.json";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
     getAuth,
