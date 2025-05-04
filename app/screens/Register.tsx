@@ -15,7 +15,7 @@ import { StyleProp, TouchableOpacity, View, ViewStyle, StyleSheet, Text, ScrollV
 import { Button, Card, TextInput } from "react-native-paper";
 import { Picker } from "@react-native-picker/picker";
 import CardContent from "react-native-paper/lib/typescript/components/Card/CardContent";
-
+ 
 
 const RegisterScreen = ({ navigation }: any) => {
 
@@ -36,7 +36,7 @@ const RegisterScreen = ({ navigation }: any) => {
         alignSelf: 'stretch',
         margin: 20
     };
-
+    
     const Register = async () => {
         navigation.navigate('Main');
     }
@@ -223,7 +223,7 @@ const RegisterScreen = ({ navigation }: any) => {
                 value={motivations}
                 onChangeText={(motivations: string) => setMotivations(motivations)}
             />
-            <TouchableOpacity
+            {/* <TouchableOpacity
                 style={styles.purpleButton}
                 onPress={() => {
                     console.log("Purple Button Pressed!");
@@ -231,7 +231,36 @@ const RegisterScreen = ({ navigation }: any) => {
                 }}
             >
                 <Text style={styles.buttonText}>Done</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
+            <TouchableOpacity
+                style={styles.purpleButton}
+                onPress={async () => {
+                    const userData = {
+                    email,
+                    password,
+                    firstname,
+                    lastname,
+                    country,
+                    interests,
+                    type,
+                    opportunities,
+                    workstyle,
+                    skillsstrengths,
+                    motivations
+                    };
+
+                    try {
+                    await AsyncStorage.setItem('userData', JSON.stringify(userData));
+                    console.log("User data saved locally!");
+                    navigation.navigate('Main');
+                    } catch (e) {
+                    console.error("Failed to save user data", e);
+                    }
+                }}
+                >
+                <Text style={styles.buttonText}>Done</Text>
+                </TouchableOpacity>
+
         </ScrollView>
     );
 }
