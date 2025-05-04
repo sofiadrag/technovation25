@@ -42,23 +42,6 @@ const ChatAIScreen = () => {
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.innerContainer}>
-          {/* <ScrollView
-            style={styles.chatContainer}
-            contentContainerStyle={styles.messagesContainer}
-          >
-            {messages.map((msg, index) => (
-              <View
-                key={index}
-                style={[
-                  styles.message,
-                  msg.sender === "user" ? styles.userMessage : styles.aiMessage,
-                ]}
-              >
-                <Text style={styles.messageText}>{msg.text}</Text>
-              </View>
-            ))}
-            {loading && <ActivityIndicator size="small" color="#825C96" />}
-          </ScrollView> */}
           <ScrollView
             style={styles.chatContainer}
             contentContainerStyle={[styles.messagesContainer, { flexGrow: 1 }]}
@@ -72,7 +55,7 @@ const ChatAIScreen = () => {
                   msg.sender === "user" ? styles.userMessage : styles.aiMessage,
                 ]}
               >
-                <Text style={styles.messageText}>{msg.text}</Text>
+                <Text selectable style={styles.messageText}>{msg.text}</Text>
               </View>
             ))}
             {loading && <ActivityIndicator size="small" color="#825C96" />}
@@ -124,7 +107,7 @@ const styles = StyleSheet.create({
   },
   aiMessage: {
     alignSelf: "flex-start",
-    backgroundColor: "#f8d7da",
+    backgroundColor: "#A884B3",
   },
   messageText: {
     fontSize: 16,

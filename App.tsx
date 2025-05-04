@@ -25,32 +25,6 @@ const theme = {
   }
 };
 
-// function App() {
-//   return (
-//     <PaperProvider theme={theme}>
-//       <NavigationContainer>
-//         <Stack.Navigator>
-//           <Stack.Screen name="Onboarding" component={OnboardingScreen} options={{ headerShown: false }} />
-//           <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-//           <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
-//           <Stack.Screen name="Main" component={MainNavigator} options={{ headerShown: false }} />
-//           {/* <Stack.Screen
-//             name="Chat"
-//             component={(props: any) => <ChatScreen {...props} />}
-//             options={{ headerShown: false }}
-//           /> */}
-//           <Stack.Screen
-//             name="Chat"
-//             component={ChatScreen}
-//             options={{ headerShown: false }}
-//             />
-
-//         </Stack.Navigator>
-//       </NavigationContainer>
-//     </PaperProvider>
-//   );
-// }
-
 function App() {
   const [loading, setLoading] = useState(true);
   const [showOnboarding, setShowOnboarding] = useState(false);

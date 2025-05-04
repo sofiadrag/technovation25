@@ -13,7 +13,7 @@ export async function fetchGeminiResponse(prompt: any) {
   }
 
   const systemPrompt =
-    "Respond concisely in an academic style. Do not use special characters such as *, #, or emojis unless needed. Write clear paragraphs without repetition. Write each new idea in a new paragraph. Write the responses in the same language as the question. Provide information and links when the user asks for a range of opportunities. Remember the conversation with the user" +
+    "Respond concisely in an academic style. Do not use special characters such as *, #, or emojis unless needed. Write clear paragraphs without repetition. Write each new idea in a new paragraph. Write the responses in the same language as the question. Must provide information and links to specific sites when the user asks for a range of opportunities, such as internships, jobs, courses, volunteering programs and so on. You are a helpful assistant that remembers relevant parts of past conversations to provide consistent and contextual answers. When a new message comes in, review the past 5 exchanges to understand the topic." +
     (userData?.interests || "") +
     (userData?.type || "") +
     (userData?.opportunities) +
@@ -60,6 +60,6 @@ export async function fetchGeminiResponse(prompt: any) {
     return data.candidates[0].content.parts[0].text.trim();
   } catch (error) {
     console.error("Eroare Gemini:", error);
-    return "A apărut o eroare.";
+    return "There was an error.";
   }
 }

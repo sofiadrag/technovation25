@@ -20,8 +20,6 @@ import Data from '../data/mock_api.json';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import * as DocumentPicker from "expo-document-picker";
-import { WebView } from "react-native-webview";
 type RootStackParamList = {
     Chat: { id: string };
     Main: undefined;
@@ -48,7 +46,7 @@ const ChatScreen = () => {
             if (storedMessages) {
                 const parsedMessages = JSON.parse(storedMessages);
                 setAllMessages(parsedMessages);
-                setUserMessages(parsedMessages[(route.params as any)?.id] || []); // Ensure userMessages is an array
+                setUserMessages(parsedMessages[(route.params as any)?.id] || []); 
             } else {
                 setAllMessages({});
                 setUserMessages([]);
@@ -63,7 +61,7 @@ const ChatScreen = () => {
             const newMessage = {
                 id: Date.now().toString(),
                 text: input || "PDF Attached",
-                pdfUri: pdfUri || null, // Include the PDF URI if available
+                pdfUri: pdfUri || null, 
             };
             const updatedMessages = {
                 ...allMessages,
@@ -72,24 +70,13 @@ const ChatScreen = () => {
             setAllMessages(updatedMessages);
             setUserMessages([...(userMessages || []), newMessage]);
             setInput('');
-            setPdfUri(null); // Clear the PDF URI after sending
+            setPdfUri(null); 
         }
     };
 
     const onBackButtonPress = async () => {
         await AsyncStorage.setItem('messages', JSON.stringify(allMessages));
         navigation.navigate('Main' as never);
-    };
-
-    const wipeAllMessages = async () => {
-        try {
-            await AsyncStorage.removeItem('messages');
-            setAllMessages({});
-            setUserMessages([]);
-            console.log("All messages wiped successfully!");
-        } catch (error) {
-            console.error("Error wiping messages:", error);
-        }
     };
 
     const [pdfUri, setPdfUri] = useState<string | null>(null);
@@ -120,11 +107,6 @@ const ChatScreen = () => {
                             </TouchableOpacity>
                         </View>
                     </Card>
-                    <View>
-                        <TouchableOpacity onPress={wipeAllMessages}>
-                            <Text style={styles.backButtonText}>Wipe All Messages</Text>
-                        </TouchableOpacity>
-                    </View>
                     <FlatList
                         data={userMessages}
                         keyExtractor={(item) => item.id}

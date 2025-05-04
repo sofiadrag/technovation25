@@ -22,8 +22,6 @@ export default function HomeScreen({ navigation, route }: { navigation: HomeScre
         const fetchActiveChats = async () => {
             const storedChatUsers = await AsyncStorage.getItem("chatUsers");
             const parsedChatUsers = JSON.parse(storedChatUsers || "[]");
-
-            // Filter and map users from the data
             setActiveChats(
                 Data.filter((user) => parsedChatUsers.includes(user.id)).map((user) => ({
                     id: user.id,
@@ -34,30 +32,25 @@ export default function HomeScreen({ navigation, route }: { navigation: HomeScre
         };
 
         fetchActiveChats();
-
-        // Listen for changes in AsyncStorage
         const unsubscribe = navigation.addListener("focus", fetchActiveChats);
         return unsubscribe;
     }, [navigation]);
 
-    const navigateToChat = (user: { userName?: string; avatar?: string | undefined; id: any; }) => {
-        navigation.navigate("Chat", { id: user.id });
-    };
-
-    const wipeAllUsers = async () => {
+    const clearChatHistory = async () => {
         await AsyncStorage.removeItem("chatUsers");
         setActiveChats([]);
+    };
+
+    const navigateToChat = (user: { userName?: string; avatar?: string | undefined; id: any; }) => {
+        navigation.navigate("Chat", { id: user.id });
     };
 
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
                 <Text style={styles.headerGreeting}>Hello</Text>
-                <Text style={styles.headerName}>Delia</Text>
-                <Button mode="text" onPress={wipeAllUsers}>
-                    Wipe All Users
-                </Button>
-            </View> 
+                <Text style={styles.headerName}>John Doe</Text>
+            </View>
             <FlatList
                 data={activeChats}
                 keyExtractor={(item, index) => index.toString()}
@@ -147,5 +140,16 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         color: "#333",
         textAlign: "left",
+    },
+    clearButton: {
+        marginTop: 10,
+        backgroundColor: "#FF6F61",
+        borderRadius: 20,
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+    },
+    clearButtonText: {
+        color: "#FFF",
+        fontWeight: "bold",
     },
 });
