@@ -33,3 +33,4 @@ cd react-native-firebase-seed
 npm install
 npm start
 ```
+If when you open expo, it binds to a different ip than your local network, you can force it to bind on a specific ip, by changing the expo start command in package.json like following: `"start": "set REACT_NATIVE_PACKAGER_HOSTNAME=192.168.x.xxx && expo start",`
