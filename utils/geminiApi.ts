@@ -13,7 +13,7 @@ export async function fetchGeminiResponse(prompt: any) {
   }
 
   const systemPrompt =
-    "Respond concisely in an academic style. Do not use special characters such as *, #, or emojis unless needed. Write clear paragraphs without repetition. Write each new idea in a new paragraph. Write the responses in the same language as the question. " +
+    "Respond concisely in an academic style. Do not use special characters such as *, #, or emojis unless needed. Write clear paragraphs without repetition. Write each new idea in a new paragraph. Write the responses in the same language as the question. Provide information and links when the user asks for a range of opportunities. Remember the conversation with the user" +
     (userData?.interests || "") +
     (userData?.type || "") +
     (userData?.opportunities) +

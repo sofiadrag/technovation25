@@ -67,3 +67,4 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
 });
+// '#825C96'
