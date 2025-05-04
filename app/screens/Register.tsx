@@ -1,16 +1,5 @@
 import React, { useState } from "react";
-import { initializeApp } from "firebase/app";
-// import firebaseConfig from "../../firebase-config.json";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {
-    getAuth,
-    initializeAuth,
-    onAuthStateChanged,
-    signInWithEmailAndPassword,
-    // @ts-ignore
-    getReactNativePersistence
-} from 'firebase/auth';
-import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 import { StyleProp, TouchableOpacity, View, ViewStyle, StyleSheet, Text, ScrollView } from "react-native";
 import { Button, Card, TextInput } from "react-native-paper";
 import { Picker } from "@react-native-picker/picker";

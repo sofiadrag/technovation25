@@ -99,13 +99,10 @@ const FeedScreen = ({ navigation }: any) => {
                 const storedChatUsers = await AsyncStorage.getItem("chatUsers");
                 const parsedChatUsers = JSON.parse(storedChatUsers || "[]");
 
-                // Add the user to the chatUsers list if not already present
                 if (!parsedChatUsers.includes(opp.id)) {
                   const updatedChatUsers = [...parsedChatUsers, opp.id];
                   await AsyncStorage.setItem("chatUsers", JSON.stringify(updatedChatUsers));
                 }
-
-                // Navigate to the Chat screen
                 navigation.navigate("Chat", { id: opp.id });
               }}
               style={styles.chatButton}
