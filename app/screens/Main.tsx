@@ -9,6 +9,7 @@ import ChatScreen from "./Chat";
 import Entypo from '@expo/vector-icons/Entypo';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import OboardingScreen from "./Onboarding";
 
 const Tab = createBottomTabNavigator({
     screens: {
