@@ -36,10 +36,13 @@ export default function HomeScreen({ navigation, route }: { navigation: HomeScre
         return unsubscribe;
     }, [navigation]);
 
-    const clearChatHistory = async () => {
+    // Uncomment this function to clear chat history
+
+    {/*const clearChatHistory = async () => {
         await AsyncStorage.removeItem("chatUsers");
         setActiveChats([]);
     };
+    */}
 
     const navigateToChat = (user: { userName?: string; avatar?: string | undefined; id: any; }) => {
         navigation.navigate("Chat", { id: user.id });
@@ -71,6 +74,16 @@ export default function HomeScreen({ navigation, route }: { navigation: HomeScre
                             >
                                 Open Chat
                             </Button>
+                            {/* Uncomment this button to clear chat history */}
+                            {/*<Button
+                                mode="text"
+                                onPress={() => { clearChatHistory(); }}
+                                style={styles.clearButton}
+                                labelStyle={styles.clearButtonText}              
+                            >
+                                Wipe all user data
+                            </Button>*/}
+
                         </View>
                     </Card>
                 )}
