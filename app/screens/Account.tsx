@@ -37,9 +37,9 @@ const AccountScreen = () => {
 
       <Button
         mode="outlined"
-        style={{ marginTop: 20 }}
-        onPress={pickPDF}
-      >
+        style={{ marginTop: 20, backgroundColor: "#825C96" }}
+        textColor="#FFFFFF"
+        onPress={pickPDF}>
         Upload PDF
       </Button>
 
