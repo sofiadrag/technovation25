@@ -15,7 +15,7 @@ const OnboardingScreen = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>
-        At [Your App Name], we believe your career should fit you — not the other way around.
+        At Carred Compass, we believe your career should fit you — not the other way around.
       </Text>
 
       <Text style={styles.body}>
